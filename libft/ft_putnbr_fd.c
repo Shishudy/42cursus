@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 18:02:35 by rasantos          #+#    #+#             */
-/*   Updated: 2021/10/19 18:02:36 by rasantos         ###   ########.fr       */
+/*   Created: 2022/03/08 18:14:40 by rasantos          #+#    #+#             */
+/*   Updated: 2022/03/08 18:14:41 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+void	ft_putnbr_fd(int n, int fd)
 {
-	unsigned char	*p;
+	long	n2;
 
-	p = (unsigned char *)s;
-	while (n != 0)
+	n2 = n;
+	if (n2 >= 10)
 	{
-		if (*p == (unsigned char)c)
-			return ((void *)p);
-		p++;
-		n--;
+		ft_putnbr_fd(n2 / 10, fd);
+		ft_putnbr_fd(n2 % 10, fd);
 	}
-	return (0);
+	else if (n2 >= 0 && n2 < 10)
+		ft_putchar_fd(n2 + '0', fd);
+	else if (n2 < 0 && n2 > -10)
+	{
+		n2 = -n2;
+		ft_putchar_fd('-', fd);
+		ft_putchar_fd(n2 + '0', fd);
+	}
+	else
+	{
+		n2 = -n2;
+		ft_putchar_fd('-', fd);
+		ft_putnbr_fd(n2 / 10, fd);
+		ft_putnbr_fd(n2 % 10, fd);
+	}
 }

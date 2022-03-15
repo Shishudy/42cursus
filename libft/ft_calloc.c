@@ -10,16 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
 #include "libft.h"
 
-void *calloc(size_t nelem, size_t elsize)
+void	*ft_calloc(size_t count, size_t size)
 {
 	unsigned int	s;
 	char			*m;
 
-	s = nelem * elsize;
-	if ((m = malloc(s)) == NULL)
+	s = count * size;
+	m = malloc(s);
+	if (m == NULL)
 		return (NULL);
 	ft_memset(m, 0, s);
 	return (m);

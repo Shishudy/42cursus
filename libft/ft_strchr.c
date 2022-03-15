@@ -12,27 +12,18 @@
 
 #include "libft.h"
 
-char	*ft_strchr(char *big, int little)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	while (big[i] != '\0')
+	if (c == 0)
+		return ((char *)(s + ft_strlen(s)));
+	while (s[i])
 	{
-		if (big[i] == little)
-			return (&big[i]);
+		if (s[i] == (char)c)
+			return ((char *)(s + i));
 		i++;
 	}
-	return (0);
+	return (NULL);
 }
-
-/*#include <string.h>
-#include <stdio.h>
-
-int	main()
-{
-	char *big = "Eu sou aluno da 42";
-	int little = 'a';
-	printf("%s ", ft_strchr(big, little));
-	printf("%s\n", strchr(big, little));
-}*/

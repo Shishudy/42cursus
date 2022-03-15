@@ -12,10 +12,10 @@
 
 #include "libft.h"
 
-int ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	unsigned const char *a;
-	unsigned const char *b;
+	unsigned const char	*a;
+	unsigned const char	*b;
 
 	a = (unsigned char *)s1;
 	b = (unsigned char *)s2;
@@ -29,12 +29,3 @@ int ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (*a - *b);
 }
-
-/*#include <stdio.h>
-int	main()
-{
-	char	a[] = "abcdef";
-	char	b[] = "abcdef";
-	printf("%d ", ft_memcmp(a, b, 3*sizeof(char)));
-	printf("%d\n", memcmp(a, b, 3*sizeof(char)));
-}*/
