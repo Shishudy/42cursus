@@ -33,6 +33,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 	unsigned int	end;
 	unsigned int	i;
 
+	if (s1 == NULL)
+		return (NULL);
 	if (!*s1 || !*set)
 		return (ft_strdup(s1));
 	strt = 0;

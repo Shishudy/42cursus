@@ -19,6 +19,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	unsigned int	clen;
 	char			*cstr;
 
+	if (s1 == NULL || s2 == NULL)
+		return (NULL);
 	clen = ft_strlen(s1) + ft_strlen(s2);
 	cstr = (malloc(clen + 1));
 	if (cstr == NULL)

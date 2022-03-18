@@ -62,7 +62,7 @@ static char	**ft_splitter(char const *s, char c, int k, char **split)
 		if (s[i] == '\0')
 			break ;
 		j = 0;
-		ss = (char *)malloc(sizeof(char) * (ft_countchar(s, c, i) + 1));
+		ss = (char *)malloc(sizeof(char) * (ft_countchar(s, c, i) + 2));
 		if (ss == NULL)
 			return (NULL);
 		while (s[i] != c && s[i] != '\0')
