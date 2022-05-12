@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include <stdio.h>
 
 int	ft_ftype(const char f, va_list arg)
 {
@@ -25,13 +26,13 @@ int	ft_ftype(const char f, va_list arg)
 	else if (f == 'i')
 		return (ft_putnbr(va_arg(arg, int)));
 	else if (f == 'u')
-		return (ft_putudec(va_arg(arg, int)));
+		return (ft_putudec(va_arg(arg, unsigned int)));
 	else if (f == 'x')
-		return (ft_puthex(va_arg(arg, int), 0));
+		return (ft_puthex(va_arg(arg, unsigned int), 0));
 	else if (f == 'X')
-		return (ft_puthex(va_arg(arg, int), 1));
+		return (ft_puthex(va_arg(arg, unsigned int), 1));
 	else if (f == 'p')
-		return (ft_putstr("0x") + ft_puthex(va_arg(arg, int), 0));
+		return (ft_putstr("0x") + ft_puthex2(va_arg(arg, unsigned long), 0));
 	return (0);
 }
 
@@ -58,14 +59,3 @@ int	ft_printf(const char *f, ...)
 	va_end(arg);
 	return (n);
 }
-/*
-#include <stdio.h>
-
-int	main()
-{
-	printf("%d 1 \n", printf("%p 1.5 ", 65535));
-	printf("%d 2 \n", ft_printf("%p 2.5 ", 65535));
-	ft_printf("%d 3 \n", printf("%p 3.5 ", 65535));
-	ft_printf("%d 4 \n", ft_printf("%p 4.5 ", 65535));
-}
-*/

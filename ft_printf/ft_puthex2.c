@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_puthex.c                                        :+:      :+:    :+:   */
+/*   ft_puthex2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/17 14:24:45 by rasantos          #+#    #+#             */
-/*   Updated: 2022/03/17 14:24:46 by rasantos         ###   ########.fr       */
+/*   Created: 2022/05/12 17:32:11 by rasantos          #+#    #+#             */
+/*   Updated: 2022/05/12 17:32:14 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_counter(unsigned int nbr)
+static int	ft_counter(unsigned long nbr)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ static char	*ft_invert(char *s, int i)
 	char	*ns;
 	int		j;
 
-	ns = (char *)malloc(sizeof(char) * (i + 1));
+	ns = (char *)malloc(sizeof(char) * (i + 2));
 	if (ns == NULL)
 		return (0);
 	j = 0;
@@ -52,7 +52,7 @@ static char	*ft_invert(char *s, int i)
 	return (ns);
 }
 
-int	ft_puthex(unsigned int nbr, int lu)
+int	ft_puthex2(unsigned long nbr, int lu)
 {
 	char	*hexa;
 	char	*s;
