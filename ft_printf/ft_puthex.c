@@ -27,8 +27,10 @@ static int	ft_counter(unsigned int nbr)
 	return (i);
 }
 
-static void	ft_free(char *s)
+static void	ft_free(char *ns, char *s)
 {
+	free (ns);
+	ns = NULL;
 	free (s);
 	s = NULL;
 }
@@ -75,9 +77,8 @@ int	ft_puthex(unsigned int nbr, int lu)
 	if (nbr < 16)
 		s[i++] = hexa[nbr];
 	s[i] = '\0';
-	ns = ft_invert(s, i - 1); //encurtar isto
+	ns = ft_invert(s, i - 1);
 	i = ft_putstr(ns);
-	ft_free(ns);
-	ft_free(s);
+	ft_free(ns, s);
 	return (i);
 }

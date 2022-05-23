@@ -27,8 +27,10 @@ static int	ft_counter(unsigned long nbr)
 	return (i);
 }
 
-static void	ft_free(char *s)
+static void	ft_free(char *ns, char *s)
 {
+	free (ns);
+	ns = NULL;
 	free (s);
 	s = NULL;
 }
@@ -52,17 +54,14 @@ static char	*ft_invert(char *s, int i)
 	return (ns);
 }
 
-int	ft_puthex2(unsigned long nbr, int lu)
+int	ft_puthex2(unsigned long nbr)
 {
 	char	*hexa;
 	char	*s;
 	char	*ns;
 	int		i;
 
-	if (lu == 0)
-		hexa = "0123456789abcdef";
-	else if (lu == 1)
-		hexa = "0123456789ABCDEF";
+	hexa = "0123456789abcdef";
 	s = (char *)malloc(sizeof(char) * (ft_counter(nbr) + 1));
 	if (s == NULL)
 		return (0);
@@ -75,9 +74,8 @@ int	ft_puthex2(unsigned long nbr, int lu)
 	if (nbr < 16)
 		s[i++] = hexa[nbr];
 	s[i] = '\0';
-	ns = ft_invert(s, i - 1); //encurtar isto
+	ns = ft_invert(s, i - 1);
 	i = ft_putstr(ns);
-	ft_free(ns);
-	ft_free(s);
+	ft_free(ns, s);
 	return (i);
 }

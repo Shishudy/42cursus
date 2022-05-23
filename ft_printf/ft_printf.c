@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 int	ft_ftype(const char f, va_list arg)
 {
@@ -32,7 +31,7 @@ int	ft_ftype(const char f, va_list arg)
 	else if (f == 'X')
 		return (ft_puthex(va_arg(arg, unsigned int), 1));
 	else if (f == 'p')
-		return (ft_putstr("0x") + ft_puthex2(va_arg(arg, unsigned long), 0));
+		return (ft_putstr("0x") + ft_puthex2(va_arg(arg, unsigned long)));
 	return (0);
 }
 
