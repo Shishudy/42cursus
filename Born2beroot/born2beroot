@@ -1,0 +1,59 @@
+Virtual machine: It's an isolated system inside your actual system, which means you can run any OS of your choosing and you can do whatever you want inside the VM and it won't have any consequences for your main OS. You can't access VM folders from your main OS or vice-versa because whatever storage you assign your VM becomes virtually separated from the storage your main OS is using.
+
+Why Debian: Looked easier to work with and more beginner friendly.
+
+CentOS vs Debian: Debian is more focused on terminal end usage, while CentOS is marketed more towards user-friendliness.
+	Debian supports multiple archs, while CentOS does not.
+	While Debian has a release cycle of 2 years but can be easily upgraded from one version to the next, CentOS takes longer to release big updates. While that may mean better stability and optimization in-version, every time a new version comes out, the whole OS needs to be reinstalled, as opposed to just updated, which takes a lot more work.
+	Debian uses apt as it its package manager while CentOS uses YUM.
+	CentOS has limited default packages while Debian comes with a lot of packages by default.
+
+Apt vs Aptitude: Apt is a low-level package manager, which means it communicates closer to the system and only does exactly what you tell it to do, while also being the base for other high-level package managers (like Aptitude). Aptitude on the other hand does things more automatically, like auto removing packages you no longer need (with apt you'd need to do $apt auto-remove) or suggest installation of dependent packages.
+
+AppArmor: Included by default with Debian. Basically it's a service that provides MAC security, allowing system admins to restrict certain processes or actions said processes may perform.
+
+SSH: Secure Shell is a network protocol that gives users/system admins a secure way to access a system through an unsecured network. It provides strong encryption and allows the remote access and management of apps, commands and files from one computer to another.
+
+Cron: Cron is a command-line utility that allows tasks to be scheduled on a Unix OS. For example, it will automatically run a script or do a server backup at a certain time of day.
+
+Wordpress: It's an open source software that you can install on your own web host to create a website.
+
+Lighttpd: It's a high performance web server software that is designed to be fast, secure and flexible. It uses less resources compared to other web servers.
+
+MariaDB: It's an open source relational database. It allows for data warehousing, logging applications and cloud storaging.
+
+PHP: It's an open source server sided programming language that is used for web development. It is usually used to interact with databases to retrieve/send information.
+
+password: PasswordForEvaluation1
+
+sudo ufw status
+sudo systemctl status ssh
+head -n 2 /etc/os-release
+getent group sudo
+getent group user42
+sudo adduser testuser
+sudo groupadd evaluating
+sudo usermod -aG evaluating <testuser>
+getent group evaluating
+sudo chage -l <testuser>
+hostnamectl
+hostnamectl set-hostname <new_hostname>
+sudo reboot
+lsblk
+dpkg -l | grep sudo
+sudo usermod -aG sudo <testuser>
+sudo ufw status numbered
+sudo ufw allow 8080
+sudo ufw delete rule <number>
+ssh rasantos@<ip> -p 4242
+bash /home/monitoring.sh
+nano /home/monitoring.sh
+sudo crontab -e
+
+bonus:
+sudo service status lighttpd
+(on browser)http//<ip>
+ftp <ip>
+get <file to local>
+put <file to server>
+delete (tab - to check if it went through)
