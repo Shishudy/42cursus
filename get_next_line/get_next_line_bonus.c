@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 16:35:45 by rasantos          #+#    #+#             */
-/*   Updated: 2022/11/18 19:30:28 by rasantos         ###   ########.fr       */
+/*   Created: 2022/11/18 17:55:21 by rasantos          #+#    #+#             */
+/*   Updated: 2022/11/18 18:13:04 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 #include <unistd.h>
 
 char	*ft_remainder(int fd, char *remainder)
@@ -91,14 +91,14 @@ char	*ft_new_remainder(char *remainder)
 char	*get_next_line(int fd)
 {
 	char		*new_line;
-	static char	*remainder;
+	static char	*remainder[4096];
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	remainder = ft_remainder(fd, remainder);
-	if (!remainder)
+	remainder[fd] = ft_remainder(fd, remainder[fd]);
+	if (!remainder[fd])
 		return (NULL);
-	new_line = ft_new_line(remainder);
-	remainder = ft_new_remainder(remainder);
+	new_line = ft_new_line(remainder[fd]);
+	remainder[fd] = ft_new_remainder(remainder[fd]);
 	return (new_line);
 }

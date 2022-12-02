@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 16:35:31 by rasantos          #+#    #+#             */
-/*   Updated: 2022/05/23 16:35:33 by rasantos         ###   ########.fr       */
+/*   Created: 2022/11/18 17:55:03 by rasantos          #+#    #+#             */
+/*   Updated: 2022/11/18 18:15:42 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(char *s)
 {
