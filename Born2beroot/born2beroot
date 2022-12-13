@@ -24,6 +24,7 @@ MariaDB: It's an open source relational database. It allows for data warehousing
 
 PHP: It's an open source server sided programming language that is used for web development. It is usually used to interact with databases to retrieve/send information.
 
+disk password: Eug0st0da42_muitofixe
 password: PasswordForEvaluation1
 
 sudo ufw status
