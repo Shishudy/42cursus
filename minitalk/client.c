@@ -6,87 +6,57 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/05 19:44:58 by ivda-cru          #+#    #+#             */
-/*   Updated: 2022/12/14 15:07:03 by rasantos         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:35:02 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-/*void error(char *message)
+void	ft_sendbit(int pid, char byte)
 {
-	ft_putstr_fd("Error!", STDOUT_FILENO);
-	ft_putendl_fd(message, STDOUT_FILENO);
-	exit(0);
-}
-
-static void send_bit(char c, int pid)
-{
-	__uint8_t i;
+	int	i;
+	int	b;
 
 	i = 0;
 	while (i < 8)
 	{
-		if ((c >> i) & 1)
+		b = (byte >> i++) & b;
+		if (b)
+		{
+			ft_printf("%d", b);
 			kill(pid, SIGUSR1);
+		}
 		else
+		{
+			ft_printf("%d", b);
 			kill(pid, SIGUSR2);
-		usleep(400);
-		i++;
+		}
 	}
 }
 
-static void send_string(char *str, int pid)
+void	ft_sendbyte(int pid, char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		send_bit(str[i], pid);
+		ft_sendbit(pid, str[i]);
 		i++;
 	}
-	if (str[i] == '\0')
-		send_bit(str[i], pid);
 }
 
-static void bit_confirmation(int signum)
-{
-	static int beeps_count;
-
-	if (signum == SIGUSR1)
-		beeps_count++;
-	if (signum == SIGUSR2)
-	{
-		beeps_count = (beeps_count + 1) / 8;
-		ft_putchar('\n');
-		ft_putnbr_fd(beeps_count, STDOUT_FILENO);
-		ft_putendl_fd(" Bytes received with sucess!", STDOUT_FILENO);
-		ft_putchar('\n');
-		exit(0);
-	}
-}
-
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
 	int pid;
-	char *str;
+	char *client_msg;
 
 	if (argc != 3)
-		error(" invalid arguments! Ending Client");
+		return (ft_printf("Error: Wrong number of arguments\n"));
 	pid = ft_atoi(argv[1]);
 	if (kill(pid, 0) < 0)
-		error(" PID is Invalid! Ending Client!");
-	str = ft_strdup(argv[2]);
-	if (!str || ft_strlen(str) == 0)
-	{
-		free(str);
-		error(" Empty string");
-	}
-	signal(SIGUSR1, &bit_confirmation);
-	signal(SIGUSR2, &bit_confirmation);
-	send_string(str, pid);
-	free(str);
-	while (1)
-		pause();
+		return (ft_printf("Error: Invalid PID\n"));
+	client_msg = argv[2];
+	ft_sendbyte(pid, client_msg);
 	return (0);
-}*/
+}

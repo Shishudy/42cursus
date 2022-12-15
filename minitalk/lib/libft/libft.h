@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:04:47 by rasantos          #+#    #+#             */
-/*   Updated: 2022/12/14 16:22:53 by rasantos         ###   ########.fr       */
+/*   Updated: 2022/12/15 17:11:34 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,7 @@
 
 //Libc functions
 size_t	ft_strlen(const char *srt);
+int	ft_atoi(const char *str);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
 
 #endif
