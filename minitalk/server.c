@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/16 17:24:05 by rasantos          #+#    #+#             */
-/*   Updated: 2022/12/16 17:27:46 by rasantos         ###   ########.fr       */
+/*   Updated: 2022/12/16 20:23:58 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static char	*increment_new_data(char new_char, char *client_str)
 	len = 0;
 	if (client_str)
 		len = ft_strlen(client_str);
-	server_str = (char *)malloc(sizeof(char) * (len + 2));
+	server_str = (char *)malloc(sizeof(char) * (len + 1 + 1));
 	if (server_str)
 	{
 		server_str = ft_memcpy(server_str, client_str, len);
@@ -50,6 +50,7 @@ static void	signal_handler(int signum, siginfo_t *pid, void *arg)
 		{
 			ft_printf("%s\n", client_str);
 			kill(client_pid, SIGUSR2);
+			free(client_str);
 			client_str = NULL;
 		}
 		i = 0;
@@ -68,9 +69,9 @@ int	main(void)
 	ft_printf("%d\n", pid);
 	sig.sa_flags = SA_SIGINFO;
 	sig.sa_sigaction = &signal_handler;
+	sigemptyset(&sig.sa_mask);
 	sigaction(SIGUSR1, &sig, NULL);
 	sigaction(SIGUSR2, &sig, NULL);
-	sigemptyset(&sig.sa_mask);
 	while (1)
 		pause();
 	return (0);
