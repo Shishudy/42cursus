@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putudec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: israeloriente <israeloriente@student.42    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/16 15:39:27 by rasantos          #+#    #+#             */
-/*   Updated: 2022/12/13 19:40:47 by israelorien      ###   ########.fr       */
+/*   Created: 2022/12/16 17:26:08 by rasantos          #+#    #+#             */
+/*   Updated: 2022/12/16 17:26:13 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

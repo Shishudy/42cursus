@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/14 16:00:01 by israelorien       #+#    #+#             */
-/*   Updated: 2022/12/14 16:22:48 by rasantos         ###   ########.fr       */
+/*   Created: 2022/12/16 17:25:00 by rasantos          #+#    #+#             */
+/*   Updated: 2022/12/16 17:25:05 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

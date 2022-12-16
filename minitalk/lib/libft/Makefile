@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/14 16:07:05 by israelorien       #+#    #+#              #
-#    Updated: 2022/12/15 17:05:01 by rasantos         ###   ########.fr        #
+#    Created: 2022/12/16 17:24:41 by rasantos          #+#    #+#              #
+#    Updated: 2022/12/16 17:24:42 by rasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

@@ -3,18 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/03/16 10:33:36 by rasantos          #+#    #+#              #
-#    Updated: 2022/12/14 16:30:58 by rasantos         ###   ########.fr        #
+#    Created: 2022/12/16 17:26:18 by rasantos          #+#    #+#              #
+#    Updated: 2022/12/16 17:26:22 by rasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #Variables
 
 NAME        = libftprintf.a
-CC      = gcc
-RM      = rm -f
+CC      	= gcc
+RM      	= rm -f
 CFLAGS      = -Wall -Werror -Wextra
 
 #Sources
