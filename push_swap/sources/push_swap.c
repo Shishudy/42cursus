@@ -12,13 +12,10 @@
 
 int	push_swap(int argc, char *argv[])
 {
-	int		j;
-	char	*stack_a[argc - 1];
-	char	*stack_b[argc - 1];
+	int	*stack_a;
+	int	*stack_b;
 
-	if (push_swap_errors(argc, argv) == 0)
-		return (0);
-	while (j < argc)
-		stack_a[j] = argv[j++];
+	stack_a = push_swap_errors(argc, argv);
 	push_swap_sorter(stack_a, stack_b, argc - 1);
+	return (0);
 }

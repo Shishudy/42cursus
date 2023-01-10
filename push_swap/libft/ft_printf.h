@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/17 19:19:41 by rasantos          #+#    #+#             */
-/*   Updated: 2022/03/17 19:19:41 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:34:41 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include <stdio.h>
 
 int	ft_printf(const char *f, ...);
 int	ft_putchar(char c);

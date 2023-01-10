@@ -12,17 +12,24 @@
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-LIB1	= ar -rcs
-LIB2	= ranlib
 RM		= /bin/rm -f
-
 NAME	= push_swap
-
 INCLUDE	= sources/push_swap.h
 SRCS	= sources/push_swap.c\
-		  sources/push_swap_printer.c\
-		  
-
+		  sources/push_swap_printer.c
 OBJS	= $(SRCS:.c=.o)
 
-all:	$(NAME)
+all: $(NAME)
+$(NAME) : $(OBJS)
+	@make -C ./libft --no-print-directory
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) ./sources/push_swap.h ./libft/libft.a
+
+clean: 
+	@$(RM) $(OBJS)
+	@make clean -C ./libft --no-print-directory
+fclean: clean
+	@$(RM) $(NAME)
+	@make fclean -C ./libft --no-print-directory
+re: fclean all
+
+.PHONY: clean, fclean, all, re

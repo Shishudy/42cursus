@@ -14,19 +14,31 @@ int	push_swap_errors(int argc, char *argv[])
 {
 	int	i;
 	int	j;
+	int	*arg;
 
-	i = 0;
-	while (i != argc)
+	i = 1;
+	while (i < argc)
 	{
-		if (argv[i] > 2147483647 || argv[i] < -2147483648)
+		j = ft_atoi(argv[i++]);
+		if (j)
+			arg[i] = j;
+		else
+			{
+				ft_printf("%s\n", "Error: not all parameters are integer!");
+				return (1);
+			}
+	}
+	while (arg[i])
+	{
+		if (arg[i] > 2147483647 || arg[i] < -2147483648)
 		{
-			ft_printf("%s\n", "Error: not all parameters are integer!");
+			ft_printf("%s\n", "Error: parameters are bigger than an integer!");
 			return (1);
 		}
 		j = 1;
 		while (i + j < argc - 1)
 		{
-			if (argv[i + j] == argv [i])
+			if (arg[i + j] == arg[i])
 			{
 				ft_printf("%s\n", "Error: duplicate integers!");
 				return (1);
@@ -35,5 +47,5 @@ int	push_swap_errors(int argc, char *argv[])
 		}
 		i++;
 	}
-	return (0);
+	return (arg);
 }
