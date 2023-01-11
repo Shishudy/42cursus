@@ -6,13 +6,13 @@
 /*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 18:00:59 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/10 13:46:01 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:36:23 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *str)
+void	ft_atoi(const char *str)
 {
 	int	n;
 	int	sign;
@@ -30,5 +30,5 @@ int	ft_atoi(const char *str)
 		n = n * 10 + *str - '0';
 		++str;
 	}
-	return (n * sign);
+	ft_lstadd_back(lista, n * sign);
 }

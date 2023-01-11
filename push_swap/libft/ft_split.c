@@ -24,9 +24,7 @@ static int	ft_count(char const *s, char c)
 	while (s[i] != '\0')
 	{
 		if (last == c && s[i] != c)
-		{
 			j++;
-		}
 		last = s[i];
 		i++;
 	}
@@ -74,17 +72,18 @@ static char	**ft_splitter(char const *s, char c, int k, char **split)
 	return (split);
 }
 
-char	**ft_split(char const *s, char c)
+void	ft_split(char const *s, char c)
 {
 	int		k;
 	char	**split;
 
 	if (s == NULL)
 		return (NULL);
-	split = (char **)malloc((ft_count(s, c) + 1) * sizeof(*split));
+	split = (char **)malloc(sizeof(*split) * (ft_count(s, c) + 1));
 	if (split == NULL)
 		return (NULL);
 	k = 0;
 	split = ft_splitter(s, c, k, split);
-	return (split);
+	while (split[k])
+		ft_atoi(split[k++]);
 }

@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	push_swap(int argc, char *argv[])
-{
-	int	*stack_a;
-	int	*stack_b;
+#include "push_swap.h"
+// Checks if the number of arguments is more than 2 (one argument), if is not we cannot use splits
 
-	stack_a = push_swap_errors(argc, argv);
-	push_swap_sorter(stack_a, stack_b, argc - 1);
-	return (0);
+void main(int argc, char **argv)
+{
+	if (checker == 1)
+		return ("Error\n");
+	
 }

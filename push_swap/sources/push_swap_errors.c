@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-int	push_swap_errors(int argc, char *argv[])
+int push_swap_errors(int argc, char *argv[])
 {
-	int	i;
-	int	j;
-	int	*arg;
+	int i;
+	int j;
+	int *arg;
 
 	i = 1;
 	while (i < argc)
@@ -23,10 +23,10 @@ int	push_swap_errors(int argc, char *argv[])
 		if (j)
 			arg[i] = j;
 		else
-			{
-				ft_printf("%s\n", "Error: not all parameters are integer!");
-				return (1);
-			}
+		{
+			ft_printf("%s\n", "Error: not all parameters are integer!");
+			return (1);
+		}
 	}
 	while (arg[i])
 	{
