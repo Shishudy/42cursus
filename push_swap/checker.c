@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 12:19:12 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/11 16:47:01 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:07:00 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,15 @@
  * @param argv 
  * @return int 
  */
-int check_function(char **argv)
+int main(int argc, char **argv)
+
+// Obrigado por continuar! Na boa! xD
 {
 	int	i;
 	int	j;
 	int	fez_split;
 
+	(void)argc;
 	i = 1;
 	while (argv[i])
 	{

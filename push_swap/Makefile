@@ -14,14 +14,14 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 RM		= /bin/rm -f
 NAME	= push_swap
-INCLUDE	= sources/push_swap.h
-SRCS	= sources/checker.c
+INCLUDE	= push_swap.h
+SRCS	= checker.c
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
 $(NAME) : $(OBJS)
 	@make -C ./libft --no-print-directory
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) ./sources/push_swap.h ./libft/libft.a
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) ./push_swap.h ./libft/libft.a
 
 clean: 
 	@$(RM) $(OBJS)
