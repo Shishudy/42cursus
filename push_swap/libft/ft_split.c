@@ -85,5 +85,5 @@ void	ft_split(char const *s, char c)
 	k = 0;
 	split = ft_splitter(s, c, k, split);
 	while (split[k])
-		ft_atoi(split[k++]);
+		ft_lstnew(ft_atoi(split[k++]));
 }

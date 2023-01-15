@@ -15,7 +15,7 @@ CFLAGS	= -Wall -Wextra -Werror
 RM		= /bin/rm -f
 NAME	= push_swap
 INCLUDE	= push_swap.h
-SRCS	= checker.c
+SRCS	= 
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)

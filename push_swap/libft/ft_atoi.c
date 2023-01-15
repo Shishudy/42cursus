@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 18:00:59 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/11 18:57:31 by rasantos         ###   ########.fr       */
+/*   Created: 2023/01/15 15:38:37 by rasantos          #+#    #+#             */
+/*   Updated: 2023/01/15 19:58:45 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int	n;
 	int	sign;
@@ -30,5 +30,5 @@ void	ft_atoi(const char *str)
 		n = n * 10 + *str - '0';
 		++str;
 	}
-	ft_lstadd_back(s_list, n * sign);
+	return (n * sign);
 }

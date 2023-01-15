@@ -16,18 +16,6 @@ int push_swap_errors(int argc, char *argv[])
 	int j;
 	int *arg;
 
-	i = 1;
-	while (i < argc)
-	{
-		j = ft_atoi(argv[i++]);
-		if (j)
-			arg[i] = j;
-		else
-		{
-			ft_printf("%s\n", "Error: not all parameters are integer!");
-			return (1);
-		}
-	}
 	while (arg[i])
 	{
 		if (arg[i] > 2147483647 || arg[i] < -2147483648)

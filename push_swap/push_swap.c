@@ -11,11 +11,12 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-// Checks if the number of arguments is more than 2 (one argument), if is not we cannot use splits
 
-void main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	if (checker == 1)
-		return ("Error\n");
-	
+	t_list s_stack_a;
+
+	(void)argc;
+	check_argv(**argv, s_stack_a);
+	check_list(s_stack_a);
 }

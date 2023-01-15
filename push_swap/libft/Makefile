@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+         #
+#    By: rasantos <rasantos@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 10:04:47 by rasantos          #+#    #+#              #
-#    Updated: 2022/12/04 14:30:04 by rasantos         ###   ########.fr        #
+#    Updated: 2023/01/14 19:38:23 by rasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ SRCS	= ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c ft_toupp
 			ft_strtrim.c ft_split.c ft_itoa.c ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c \
 			ft_putnbr_fd.c ft_printf.c ft_putchar.c ft_puthex.c ft_puthex2.c ft_putnbr.c ft_putudec.c ft_putstr.c \
 			get_next_line.c get_next_line_utils.c get_next_line_bonus.c get_next_line_utils_bonus.c\
+
 OBJS	= $(SRCS:.c=.o)
 BONUS_S	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c \
 			ft_lstiter.c ft_lstmap.c 
@@ -41,7 +42,7 @@ bonus:		$(NAME) $(BONUS_O)
 			$(LIB2) $(NAME)
 
 .c.o:
-			$(CC) $(CFLAGS) -I$(INCLUDE) -c $< -o $(<:.c=.o)
+			$(CC) $(CFLAGS) -I $(INCLUDE) -c $< -o $(<:.c=.o)
 
 clean:
 			$(RM) $(OBJS) $(BONUS_O)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/03 17:04:30 by rasantos          #+#    #+#             */
-/*   Updated: 2022/12/03 17:04:30 by rasantos         ###   ########.fr       */
+/*   Created: 2023/01/15 15:39:03 by rasantos          #+#    #+#             */
+/*   Updated: 2023/01/15 15:39:03 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@
 # include <unistd.h>
 # include "./libft/libft.h"
 
-int	main(int argc, char **argv);
+typedef struct s_list
+{
+	int				x;
+	struct s_list	*next;
+}					t_list;
 
 #endif
