@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/08 18:14:57 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/15 17:32:52 by rasantos         ###   ########.fr       */
+/*   Created: 2021/10/19 18:03:56 by rasantos          #+#    #+#             */
+/*   Updated: 2023/01/18 14:59:24 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(int	x)
+size_t	ft_strlen(const char *s)
 {
-	t_list	*new;
+	unsigned int	i;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
-		return (NULL);
-	new->x = x;
-	new->next = NULL;
-	return (new);
+	i = 0;
+	if (!s)
+		return (0);
+	while (s[i] != '\0')
+		i++;
+	return (i);
 }

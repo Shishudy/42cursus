@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/19 18:03:56 by rasantos          #+#    #+#             */
-/*   Updated: 2021/10/19 18:03:57 by rasantos         ###   ########.fr       */
+/*   Created: 2022/03/08 18:14:57 by rasantos          #+#    #+#             */
+/*   Updated: 2023/01/18 16:37:03 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+t_list	*ft_lstnew(void *content)
 {
-	size_t	a;
+	t_list	*new;
 
-	a = 0;
-	while (s[a] != '\0')
-		a++;
-	return (a);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (new == NULL)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

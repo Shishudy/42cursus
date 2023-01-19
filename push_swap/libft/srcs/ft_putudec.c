@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putudec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/16 15:39:27 by rasantos          #+#    #+#             */
-/*   Updated: 2022/03/16 15:39:27 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:55:15 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ static int	ft_counter(unsigned int n)
 	int	len;
 
 	len = 0;
-	if (n < 0)
+	/*if (n < 0)
 	{
 		n = -n;
 		len++;
-	}
+	}*/
 	while (n > 0)
 	{
 		len++;

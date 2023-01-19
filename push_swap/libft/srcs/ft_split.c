@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static int	ft_count(char const *s, char c)
+/*static int	ft_count(char const *s, char c)
 {
 	char	last;
 	int		i;
@@ -72,18 +72,88 @@ static char	**ft_splitter(char const *s, char c, int k, char **split)
 	return (split);
 }
 
-void	ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	int		k;
 	char	**split;
 
 	if (s == NULL)
 		return (NULL);
-	split = (char **)malloc(sizeof(*split) * (ft_count(s, c) + 1));
+	split = (char **)malloc((ft_count(s, c) + 1) * sizeof(*split));
 	if (split == NULL)
 		return (NULL);
 	k = 0;
 	split = ft_splitter(s, c, k, split);
-	while (split[k])
-		ft_lstnew(ft_atoi(split[k++]));
+	return (split);
+}*/
+
+static int	str_words(char const *str, char sep)
+{
+	int	i;
+	int	result;
+
+	i = 0;
+	result = 0;
+	while (str[i])
+	{
+		while (str[i] == sep && str[i])
+			i++;
+		if (str[i] == '\0')
+			break ;
+		while (str[i] != sep && str[i])
+			i++;
+		result++;
+	}
+	return (result);
+}
+
+static	char	*get_next_word(const char *str, int *i, char sep)
+{
+	int		j;
+	char	*new;
+
+	while (str[*i] == sep)
+		if (str[(*i)++] == '\0')
+			return (NULL);
+	j = 0;
+	while (str[*i + j] != sep && str[*i + j])
+		j++;
+	if (j != 0)
+	{
+		new = (char *)malloc(sizeof(char) * (j + 1));
+		if (new == NULL)
+			return (NULL);
+		j = 0;
+		while (str[*i] != sep && str[*i])
+			new[j++] = str[(*i)++];
+		new[j] = '\0';
+	}
+	else
+		return (NULL);
+	return (new);
+}
+
+char	**ft_split(char const *str, char sep)
+{
+	char	**list;
+	char	*word;
+	int		*i;
+	int		j;
+	int		k;
+
+	list = (char **)malloc(sizeof(char *) * (str_words(str, sep) + 1));
+	if (list == NULL)
+		return (NULL);
+	j = 0;
+	i = &j;
+	k = 0;
+	while (k < str_words(str, sep))
+	{
+		word = get_next_word(str, i, sep);
+		if (word == NULL)
+			break ;
+		list[k++] = word;
+	}
+	list[k] = NULL;
+	return (list);
 }

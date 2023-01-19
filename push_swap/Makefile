@@ -15,20 +15,21 @@ CFLAGS	= -Wall -Wextra -Werror
 RM		= /bin/rm -f
 NAME	= push_swap
 INCLUDE	= push_swap.h
-SRCS	= 
+SRCS	= push_swap.c checker.c ft_createlist.c
+
 OBJS	= $(SRCS:.c=.o)
 
 all: $(NAME)
 $(NAME) : $(OBJS)
-	@make -C ./libft --no-print-directory
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) ./push_swap.h ./libft/libft.a
+	@make -C libft --no-print-directory
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) push_swap.h libft/libft.a
 
 clean: 
 	@$(RM) $(OBJS)
-	@make clean -C ./libft --no-print-directory
+	@make clean -C libft --no-print-directory
 fclean: clean
 	@$(RM) $(NAME)
-	@make fclean -C ./libft --no-print-directory
+	@make fclean -C libft --no-print-directory
 re: fclean all
 
 .PHONY: clean, fclean, all, re

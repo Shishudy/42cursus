@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:38:19 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/15 17:43:18 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/19 15:55:29 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1000
+# endif
 
 typedef struct s_list
 {
@@ -22,7 +27,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-//Libc functions
+//Libft base functions
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -51,7 +56,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strtrim(char const *s1, char const *set);
-void	ft_split(char const *s, char c);
+char	**ft_split(char const *s, char c);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
@@ -70,5 +75,20 @@ void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//ft_printf functions (sem bonus)
+int	ft_printf(const char *f, ...);
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int	ft_putnbr(int n);
+int	ft_putudec(unsigned int n);
+int	ft_puthex(unsigned int nbr, int lu);
+int	ft_puthex2(unsigned long nbr);
+
+//get_next_line functions
+char	*get_next_line(int fd);
+char	*ft_remainder(int fd, char *remainder);
+char	*ft_new_line(char *remainder);
+char	*ft_new_remainder(char *remainder);
 
 #endif

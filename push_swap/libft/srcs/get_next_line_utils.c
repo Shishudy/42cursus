@@ -3,51 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rasantos <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 16:35:31 by rasantos          #+#    #+#             */
-/*   Updated: 2022/05/23 16:35:33 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/18 15:19:20 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
-size_t	ft_strlen(char *s)
+char	*ft_gnlstrjoin(char *remainder, char *buf)
 {
-	size_t	a;
-
-	a = 0;
-	if (!s)
-		return (0);
-	while (s[a] != '\0')
-		a++;
-	return (a);
-}
-
-char	*ft_strchr(char *s, int c)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (0);
-	if (c == 0)
-		return ((char *)(s + ft_strlen(s)));
-	while (s[i])
-	{
-		if (s[i] == (char)c)
-			return ((char *)(s + i));
-		i++;
-	}
-	return (NULL);
-}
-
-char	*ft_strjoin(char *remainder, char *buf)
-{
-	unsigned int	i;
-	unsigned int	k;
-	char			*cstr;
+	int		i;
+	int		k;
+	char	*str;
 
 	if (!remainder)
 	{
@@ -56,16 +25,16 @@ char	*ft_strjoin(char *remainder, char *buf)
 	}
 	if (!remainder || !buf)
 		return (NULL);
-	cstr = malloc(sizeof(char) * (ft_strlen(remainder) + ft_strlen(buf) + 1));
-	if (cstr == NULL)
+	str = malloc(sizeof(char) * (ft_strlen(remainder) + ft_strlen(buf) + 1));
+	if (str == NULL)
 		return (NULL);
 	i = -1;
 	k = -1;
 	while (remainder[++i] != '\0')
-		cstr[i] = remainder[i];
+		str[i] = remainder[i];
 	while (buf[++k] != '\0')
-		cstr[i + k] = buf[k];
-	cstr[i + k] = '\0';
+		str[i + k] = buf[k];
+	str[i + k] = '\0';
 	free(remainder);
-	return (cstr);
+	return (str);
 }

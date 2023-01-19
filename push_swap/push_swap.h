@@ -15,12 +15,10 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "./libft/libft.h"
+# include "./libft/includes/libft.h"
 
-typedef struct s_list
-{
-	int				x;
-	struct s_list	*next;
-}					t_list;
+int 	check_argv(char **argv, t_list s_stack_a);
+t_list	*ft_lstend(t_list *lst, int x);
+void	ft_addtolist(t_list **lst, int x);
 
 #endif
