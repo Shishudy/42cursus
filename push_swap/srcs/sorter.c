@@ -6,11 +6,11 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/19 17:20:37 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/19 19:46:54 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:57:32 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
 int	check_sort(t_list s_a, t_list s_b)
 {
@@ -27,6 +27,7 @@ int	check_sort(t_list s_a, t_list s_b)
 			return (1);
 		s_stack_a = s_stack_a->next;
 	}
+	return (0);
 }
 
 void	sort_to_b(t_list s_a, t_list s_b)
@@ -40,21 +41,21 @@ void	sort_to_b(t_list s_a, t_list s_b)
 	{
 		if (s_stack_a->content < s_stack_a->next->content && s_stack_b->content < s_stack_b->next->content)
 		{
-			ss;
-			pb;
+			ss(s_a, s_b);
+			pb(s_a, s_b);
 		}
 		else if (s_stack_a->content > s_stack_a->next->content && s_stack_b->content < s_stack_b->next->content)
 		{
-			sb;
-			pb;
+			sb(s_b);
+			pb(s_a, s_b);
 		}
 		else if (s_stack_a->content < s_stack_a->next->content)
 		{
-			sa;
-			pb;
+			sa(s_a);
+			pb(s_a, s_b);
 		}
 		else if (s_stack_a->content > s_stack_a->next->content)
-			pb;
+			pb(s_a, s_b);
 		s_stack_a = s_stack_a->next;
 	}
 }
@@ -70,21 +71,21 @@ void	sort_to_a(t_list s_a, t_list s_b)
 	{
 		if (s_stack_b->content < s_stack_b->next->content && s_stack_a->content < s_stack_a->next->content)
 		{
-			ss;
-			pa;
+			ss(s_a, s_b);
+			pa(s_b, s_a);
 		}
 		else if (s_stack_b->content > s_stack_b->next->content && s_stack_a->content < s_stack_a->next->content)
 		{
-			sa;
-			pa;
+			sa(s_a);
+			pa(s_b, s_a);
 		}
 		else if (s_stack_b->content < s_stack_b->next->content)
 		{
-			sb;
-			pa;
+			sb(s_b);
+			pa(s_b, s_a);
 		}
 		else if (s_stack_b->content > s_stack_b->next->content)
-			pa;
+			pa(s_b, s_a);
 		s_stack_b = s_stack_b->next;
 	}
 }

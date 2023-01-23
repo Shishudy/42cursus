@@ -6,11 +6,11 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:51:26 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/19 15:56:13 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:57:35 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 // Returns address of last node
 t_list	*ft_lstend(t_list *lst, int x)
 {

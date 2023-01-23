@@ -6,11 +6,11 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:32 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/19 16:55:35 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/20 19:57:35 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 // 1o while anda entre argumentos, 2o while anda dentro dos argumentos
 
 int	splitstr(char *argv, char c, t_list s_stack_a)
