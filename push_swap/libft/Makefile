@@ -6,7 +6,7 @@
 #    By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/09 10:04:47 by rasantos          #+#    #+#              #
-#    Updated: 2023/01/18 18:09:12 by rasantos         ###   ########.fr        #
+#    Updated: 2023/01/23 19:55:33 by rasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,20 +23,20 @@ SRCS	= ${wildcard srcs/*.c}
 OBJS	= $(SRCS:.c=.o)
 
 .c.o:
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(INCLUDE)
+			@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o) -I $(INCLUDE)
 
 
 $(NAME):	$(OBJS)
-			$(LIB) $(NAME) $(OBJS)
-			$(RL) $(NAME)
+			@$(LIB) $(NAME) $(OBJS)
+			@$(RL) $(NAME)
 
 all:		$(NAME)
 
 clean:
-			$(RM) $(OBJS)
+			@$(RM) $(OBJS)
 
 fclean:		clean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 
 re:			fclean all
 

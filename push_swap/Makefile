@@ -11,11 +11,12 @@
 # **************************************************************************** #
 
 CC		= gcc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fsanitize=address
 RM		= /bin/rm -f
 NAME	= push_swap
 INCLUDE	= push_swap.h
-SRCS	= ${wildcard srcs/*.c}
+SRCS	= srcs/push_swap.c srcs/checker.c srcs/ft_createlist.c
+#SRCS	= ${wildcard srcs/*.c}
 
 OBJS	= $(SRCS:.c=.o)
 
