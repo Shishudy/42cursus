@@ -87,73 +87,33 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }*/
 
-static int	str_words(char const *str, char sep)
+static char	**split(char **strarray, char *str, char c, int counter_strs)
 {
-	int	i;
-	int	result;
+	int		i;
+	char	*newstr;
 
+	newstr = NULL;
 	i = 0;
-	result = 0;
-	while (str[i])
-	{
-		while (str[i] == sep && str[i])
-			i++;
-		if (str[i] == '\0')
-			break ;
-		while (str[i] != sep && str[i])
-			i++;
-		result++;
-	}
-	return (result);
-}
-
-static	char	*get_next_word(const char *str, int *i, char sep)
-{
-	int		j;
-	char	*new;
-
-	while (str[*i] == sep)
-		if (str[(*i)++] == '\0')
-			return (NULL);
-	j = 0;
-	while (str[*i + j] != sep && str[*i + j])
-		j++;
-	if (j != 0)
-	{
-		new = (char *)malloc(sizeof(char) * (j + 1));
-		if (new == NULL)
-			return (NULL);
-		j = 0;
-		while (str[*i] != sep && str[*i])
-			new[j++] = str[(*i)++];
-		new[j] = '\0';
-	}
+	while (*str == c)
+		str++;
+	while (str[i] != c && str[i])
+		i++;
+	if (i > 0)
+		newstr = malloc(sizeof(char) * (i + 1));
+	i = 0;
+	while (*str != c && *str && newstr)
+		newstr[i++] = str++;
+	if (newstr)
+		newstr[i] = '\0';
+	if (newstr)
+		strarray = split(strarray, str, c, counter_strs + 1);
 	else
-		return (NULL);
-	return (new);
+		strarray = malloc(sizeof(char *) * (counter_strs + 1));
+	strarray[counter_strs] = newstr;
+	return (strarray);
 }
 
-char	**ft_split(char const *str, char sep)
+char	**ft_split(char *str, char c)
 {
-	char	**list;
-	char	*word;
-	int		*i;
-	int		j;
-	int		k;
-
-	list = (char **)malloc(sizeof(char *) * (str_words(str, sep) + 1));
-	if (list == NULL)
-		return (NULL);
-	j = 0;
-	i = &j;
-	k = 0;
-	while (k < str_words(str, sep))
-	{
-		word = get_next_word(str, i, sep);
-		if (word == NULL)
-			break ;
-		list[k++] = word;
-	}
-	list[k] = NULL;
-	return (list);
+	return (split(0, str, c, 0));
 }
