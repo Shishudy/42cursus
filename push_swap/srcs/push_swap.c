@@ -12,19 +12,35 @@
 
 #include "../push_swap.h"
 
+int	ft_lstlen(t_list *s_a)
+{
+	int	len;
+
+	if (!s_a)
+		return (0);
+	len = 0;
+	while (s_a->next != 0)
+	{
+		s_a = s_a->next;
+		len++;
+	}
+	return (len);
+}
+
 int main(int argc, char **argv)
 {
 	t_list *s_a;
-	//t_list *s_b;
+	int	len;
 
-	(void)argc;
+	if (argc <= 1)
+		return (0);
 	s_a = NULL;
 	s_a = check_argv(argv, s_a);
-	/*while (check_sort(&s_a, &s_b) == 1)
-	{
-		sort_to_b(&s_a, &s_b);
-		sort_to_a(&s_a, &s_b);
-	}*/
+	len = ft_lstlen(s_a);
+	if (len <= 3)
+		small_sort(&s_a);
+	else
+		big_sort(len, &s_a);
 	while (s_a != NULL)
 	{
 		ft_printf("%i\n", s_a->content);

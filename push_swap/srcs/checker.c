@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:32 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/26 14:17:42 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/02/03 17:48:38 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*splitstr(char *argv, char c, t_list *s_a)
 	while (argv[i])
 	{
 		if ((argv[i] < 48 || argv[i] > 57) && argv[i] != c)
-			exit (ft_printf("%s\n", "Error 2"));
+			exit (ft_printf("%s\n", "Non-numeric in splistr"));
 		i++;
 	}
 	args = ft_split(argv, c);
@@ -54,7 +54,7 @@ t_list *check_argv(char **argv, t_list *s_a)
 			}
 			// Checks if the there are any non-numeric chars in the arguments
 			if ((argv[i][j] < 48 || argv[i][j] > 57))
-				exit (ft_printf("%s\n", "Error 2"));
+				exit (ft_printf("%s\n", "Non-numeric in check_argv"));
 			j++;
 		}
 		// If there are no non-numeric chars
