@@ -17,12 +17,12 @@
 # include <unistd.h>
 # include "./libft/includes/libft.h"
 
-t_list  *check_argv(char **argv, t_list *s_a);
+t_list 	*check_argv(char **argv, t_list *s_a);
 t_list	*ft_lstend(t_list *lst, int x);
 void	ft_addtolist(t_list **lst, int x);
-/*int		check_sort(t_list s_a, t_list s_b);
-void	sort_to_b(t_list s_a, t_list s_b);
-void	sort_to_a(t_list s_a, t_list s_b);
+/*int		check_sort(t_list **s_a, t_list **s_b);
+void	sort_to_b(t_list **s_a, t_list **s_b);
+void	sort_to_a(t_list **s_a, t_list **s_b);
 void	sa(t_list **s_a);
 void	sb(t_list **s_b);
 void	ss(t_list **s_a, t_list **s_b);

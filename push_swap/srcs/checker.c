@@ -6,25 +6,31 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:32 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/23 21:00:12 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/26 14:17:42 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-// 1o while anda entre argumentos, 2o while anda dentro dos argumentos
 
-int	splitstr(char *argv, char c, t_list *s_a)
+t_list	*splitstr(char *argv, char c, t_list *s_a)
 {
-	int		n_args;
+	int		i;
 	char	**args;
 
+	i = 0;
+	while (argv[i])
+	{
+		if ((argv[i] < 48 || argv[i] > 57) && argv[i] != c)
+			exit (ft_printf("%s\n", "Error 2"));
+		i++;
+	}
 	args = ft_split(argv, c);
-	n_args = 0;
-	while (args[n_args])
-		ft_addtolist(&s_a, ft_atoi(args[n_args++]));
-	return (1);
+	i = 0;
+	while (args[i])
+		ft_addtolist(&s_a, ft_atoi(args[i++]));
+	return (s_a);
 }
-
+// 1o while anda entre argumentos, 2o while anda dentro dos argumentos
 t_list *check_argv(char **argv, t_list *s_a)
 {
 	int		i;
@@ -39,11 +45,11 @@ t_list *check_argv(char **argv, t_list *s_a)
 		while (argv[i][j])
 		{
 			// Checks for space, tab, line feed, vertical tab, carriage return)
-			if (argv[i][j] == 32 || argv[i][j] == 9 || argv[i][j] == 10
-				|| argv[i][j] == 11 || argv[i][j] == 13)
+			if (argv[i][j] == 32 || (argv[i][j] >= 9 && argv[i][j] <= 13))
 			{
 				// The argument is a string, use ft_split
-				n_split = splitstr(argv[i], argv[i][j], s_a);
+				s_a = splitstr(argv[i], argv[i][j], s_a);
+				n_split = 1;
 				break ;
 			}
 			// Checks if the there are any non-numeric chars in the arguments
@@ -53,7 +59,7 @@ t_list *check_argv(char **argv, t_list *s_a)
 		}
 		// If there are no non-numeric chars
 		if (n_split == 0)
-			ft_addtolist(s_a, ft_atoi(argv[i]));
+			ft_addtolist(&s_a, ft_atoi(argv[i]));
 	}
 	return (s_a);
 }

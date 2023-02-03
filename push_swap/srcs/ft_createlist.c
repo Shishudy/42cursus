@@ -6,12 +6,12 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:51:26 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/20 19:57:35 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:50:17 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-// Returns address of last node
+// Returns address of last node and checks for duplicates
 t_list	*ft_lstend(t_list *lst, int x)
 {
 	if (!lst)
@@ -20,7 +20,7 @@ t_list	*ft_lstend(t_list *lst, int x)
 		lst = lst->next;
 	// Check if x is a number already present on list a.k.a duplicates
 	if (lst->content == (void *)(__INTPTR_TYPE__) x)
-		exit (ft_printf("%s\n", "Error"));
+		exit (ft_printf("%s\n", "Error 3"));
 	return (lst);
 }
 // Creates new node with x and then adds to list
