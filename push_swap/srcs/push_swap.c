@@ -37,10 +37,16 @@ int main(int argc, char **argv)
 	s_a = NULL;
 	s_a = check_argv(argv, s_a);
 	len = ft_lstlen(s_a);
-	if (len <= 3)
+	if (len < 3)
+	{
 		small_sort(&s_a);
+		ft_printf("%s\n", "small_sort");
+	}
 	else
-		big_sort(len, &s_a);
+	{
+		//big_sort(len, &s_a);
+		ft_printf("%s\n", "big_sort");
+	}
 	while (s_a != NULL)
 	{
 		ft_printf("%i\n", s_a->content);
