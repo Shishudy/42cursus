@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-//Sorting three elements
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -143,7 +141,7 @@ void	pb(t_node **t_list_b, t_node **t_list_a)
 	*t_list_a = curr->next;
 	curr->next = *t_list_b;
 	*t_list_b = curr;
-	write(1, "pb\n", 3);
+	//write(1, "pb\n", 3);
 }
 
 void	ra(t_node **t_list_a)
@@ -160,7 +158,7 @@ void	ra(t_node **t_list_a)
 		curr = curr->next;
 	curr->next = temp;
 	temp->next = NULL;
-	write(1, "ra\n", 3);
+	//write(1, "ra\n", 3);
 }
 
 void	rb(t_node **t_list_b)
@@ -177,7 +175,7 @@ void	rb(t_node **t_list_b)
 		curr = curr->next;
 	curr->next = temp;
 	temp->next = NULL;
-	write(1, "rb\n", 3);
+	//write(1, "rb\n", 3);
 }
 
 void	rra(t_node **t_list_a)
@@ -194,7 +192,7 @@ void	rra(t_node **t_list_a)
 	curr->next = *t_list_a;
 	*t_list_a = curr;
 	before_last->next = NULL;
-	write(1, "rra\n", 4);
+	//write(1, "rra\n", 4);
 }
 
 void	rrb(t_node **t_list_b)
@@ -269,10 +267,9 @@ int	give_index(t_node **a, int element)
 	index_a = 0;
 	while (temp != NULL)
 	{
-		if (element > temp->x)
-			index_a++;
-		if (element < temp->x)
+		if (element == temp->x)
 			break ;
+		index_a++;
 		temp = temp->next;
 	}
 	return (index_a);
@@ -534,108 +531,242 @@ int	give_value_mid(t_node **a)
 //em cada chunck.
 //Se nao enviarmos o midpoint sera o maior de cada chunk
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
-{
-	char		*d;
-	const char	*s;
-	int			i;
+// void	send_sml_mid(t_node **a, t_node **b)
+// {
+// 	int		size;
+// 	int		mov;
+// 	int		mid_pnt;
+// 	//t_chunk	*temp_chunk;
 
-	if (!dst && !src)
-		return (0);
-	d = dst;
-	s = src;
-	i = 0;
-	while (n != 0)
+// 	size = cnt_recursive(*a);
+// 	while (size > 3)
+// 	{
+// 		mid_pnt = give_value_mid(a);
+// 		mov = (cnt_recursive(*a)/2);
+// 		//chunks = chunks(mov, 1);
+// 		while (mov > 0)
+// 		{
+// 			if ((*a)->x < mid_pnt)
+// 			{
+// 				pb(b, a);
+// 				mov--;
+// 				size--;
+// 			}
+// 			else
+// 				ra(a);
+// 			if (size == 3)
+// 				break ;
+// 		}
+// 	}
+// 	//return (chunks);
+// }
+
+int	midpoint(t_node **a, int i)
+{
+	t_node	*temp;
+	int	value;
+
+	temp = cloneList(a);
+	sortList(&temp);
+	i = i/2;
+	while (i-- != 0 && temp->next != NULL)
+		temp = temp->next;
+	value = temp->x;
+	deallocate(&temp, 0);
+	return (value);
+}
+
+void	send_pb(t_node **a, t_node **b, int top, int bot, int mid_point)
+{
+	if (top <= bot)
 	{
-		d[i] = s[i];
-		i++;
+		while (top-- != 0)
+			ra(a);
+		pb(b, a);
+	}
+	else if (bot < top)
+	{
+		while (bot-- != 0)
+			rra(a);
+		pb(b, a);
+	}
+	printf("send_pb: %i\n", (*b)->x);
+	if ((*b)->x < mid_point)
+		rb(b);
+}
+
+void	best_move(t_node **a, t_node **b, int start, int end, int n)
+{
+	t_node	*temp;
+	int	top;
+	int	bot;
+	int flag;
+	int	mid_point;
+
+	mid_point = midpoint(a, n);
+	while (*a && n != 0)
+	{
+		flag = 0;
+		temp = (*a);
+		while (temp->next != NULL)
+		{
+			if ((temp->x >= start && temp->x <= end) && flag == 0)
+			{
+				top = temp->x;
+				flag = 1;
+			}
+			if (temp->x >= start && temp->x <= end)
+				bot = temp->x;
+			temp = temp->next;
+		}
+		if (flag == 0)
+			break;
+		send_pb(a, b, give_index(a, top), (cnt_recursive(*a) - give_index(a, bot)), mid_point);
 		n--;
 	}
-	return (dst);
 }
 
-int	*chunks(int	numbers, int n_chunk, int *arr_chunks)
-{
-	int	*chunks;
-    int i;
+// void	sort_biggest(t_node **a, t_node **b)
+// {
+// 	int	*chunks;
 
-	chunks = malloc(sizeof(int) * (n_chunk));
-    printf("Numbers: %i\n", numbers);
-    if (arr_chunks) {
-        printf("arr_chunks: %i\n", arr_chunks[1]);   
-        chunks = ft_memcpy(chunks, arr_chunks, n_chunk - 1);
-    }
-    chunks[n_chunk - 1] = numbers;
-    i = 0;
-    while (i != n_chunk)
-        printf("Estou aqui: %i\n", chunks[i++]);
-    free(arr_chunks);
-	return (chunks);
-}
-
-int *send_sml_mid(t_node **a, t_node **b)
-{
-	int		size;
-	int		mov;
-	int		mid_pnt;
-    int     n_chunk;
-    static int     *arr_chunks;
-
-	size = cnt_recursive(*a);
-    n_chunk = 0;
-	while (size > 3)
-	{
-		mid_pnt = give_value_mid(a);
-		mov = (cnt_recursive(*a)/2);
-        arr_chunks = chunks(mov, ++n_chunk, arr_chunks);
-		while (mov > 0)
-		{
-			if ((*a)->x < mid_pnt)
-			{
-				pb(b, a);
-				mov--;
-				size--;
-			}
-			else
-				ra(a);
-			if (size == 3)
-				break ;
-		}
-	}
-    return (arr_chunks);
-}
-
-void	sort_biggest(t_node **a, t_node **b)
-{
-	//int	*chunks;
-
-	//chunks = malloc(sizeof(int) * send_sml_mid(a, b));
-	send_sml_mid(a, b);
-	sort_3_elements(a);
-	//printf("HEYYY: %ls\n", chunks);
-}
+// 	chunks = malloc(sizeof(int) * send_sml_mid(a, b));
+// 	send_sml_mid(a, b);
+// 	sort_3_elements(a);
+// 	printf("HEYYY: %ls\n", chunks);
+// }
 
 
 int	main(void)
 {
-	int	count;
+	//int	count;
 	t_node	*t_list_a;
 	t_node	*t_list_b;
 
-	count = 100;
+	//count = 100;
 	t_list_a = NULL;
 	t_list_b = NULL;
-	// insert_end(&t_list_a, 4);
-	// insert_end(&t_list_a, 36);
-	// insert_end(&t_list_a, 121);
-	// insert_end(&t_list_a, -101);
-	// insert_end(&t_list_a, 0);
+	insert_end(&t_list_a, 36);
+	insert_end(&t_list_a, 89);
+	insert_end(&t_list_a, 29);
+	insert_end(&t_list_a, 50);
+	insert_end(&t_list_a, 93);
 
-	// insert_end(&t_list_a, 37);
-	// insert_end(&t_list_a, 5);
-	// insert_end(&t_list_a, 123);
-	// insert_end(&t_list_a, 13);
-	// insert_end(&t_list_a, 15);
+	insert_end(&t_list_a, 33);
+	insert_end(&t_list_a, 5);
+	insert_end(&t_list_a, 64);
+	insert_end(&t_list_a, 13);
+	insert_end(&t_list_a, 15);
+
+	insert_end(&t_list_a, 47);
+	insert_end(&t_list_a, 27);
+	insert_end(&t_list_a, 83);
+	insert_end(&t_list_a, 49);
+	insert_end(&t_list_a, 0);
+
+	insert_end(&t_list_a, 76);
+	insert_end(&t_list_a, 77);
+	insert_end(&t_list_a, 90);
+	insert_end(&t_list_a, 1);
+
+	insert_end(&t_list_a, 82);
+
+	insert_end(&t_list_a, 56);
+	insert_end(&t_list_a, 55);
+	insert_end(&t_list_a, 92);
+	insert_end(&t_list_a, 28);
+	insert_end(&t_list_a, 25);
+
+	insert_end(&t_list_a, 53);
+	insert_end(&t_list_a, 54);
+	insert_end(&t_list_a, 44);
+	insert_end(&t_list_a, 57);
+	insert_end(&t_list_a, 88);
+
+	insert_end(&t_list_a, 35);
+	insert_end(&t_list_a, 37);
+	insert_end(&t_list_a, 85);
+	insert_end(&t_list_a, 41);
+	insert_end(&t_list_a, 42);
+
+	insert_end(&t_list_a, 78);
+	insert_end(&t_list_a, 79);
+	insert_end(&t_list_a, 52);
+	insert_end(&t_list_a, 39);
+	insert_end(&t_list_a, 86);
+
+	insert_end(&t_list_a, 46);
+	insert_end(&t_list_a, 45);
+	insert_end(&t_list_a, 74);
+	insert_end(&t_list_a, 73);
+	insert_end(&t_list_a, 81);
+
+
+	insert_end(&t_list_a, 51);
+	insert_end(&t_list_a, 98);
+	insert_end(&t_list_a, 38);
+	insert_end(&t_list_a, 65);
+	insert_end(&t_list_a, 48);
+
+	insert_end(&t_list_a, 22);
+	insert_end(&t_list_a, 32);
+	insert_end(&t_list_a, 60);
+	insert_end(&t_list_a, 61);
+	insert_end(&t_list_a, 75);
+
+	insert_end(&t_list_a, 72);
+	insert_end(&t_list_a, 30);
+	insert_end(&t_list_a, 62);
+	insert_end(&t_list_a, 31);
+	insert_end(&t_list_a, 63);
+
+	insert_end(&t_list_a, 23);
+	insert_end(&t_list_a, 67);
+	insert_end(&t_list_a, 26);
+	insert_end(&t_list_a, 68);
+	insert_end(&t_list_a, 10);
+
+	insert_end(&t_list_a, 59);
+	insert_end(&t_list_a, 94);
+	insert_end(&t_list_a, 66);
+	insert_end(&t_list_a, 40);
+	insert_end(&t_list_a, 34);
+
+	insert_end(&t_list_a, 99);
+	insert_end(&t_list_a, 43);
+	insert_end(&t_list_a, 84);
+	insert_end(&t_list_a, 7);
+	insert_end(&t_list_a, 100);
+
+	insert_end(&t_list_a, 80);
+	insert_end(&t_list_a, 14);
+	insert_end(&t_list_a, 97);
+	insert_end(&t_list_a, 69);
+	insert_end(&t_list_a, 96);
+
+	insert_end(&t_list_a, 70);
+	insert_end(&t_list_a, 18);
+	insert_end(&t_list_a, 20);
+	insert_end(&t_list_a, 95);
+	insert_end(&t_list_a, 58);
+
+	insert_end(&t_list_a, 21);
+	insert_end(&t_list_a, 4);
+	insert_end(&t_list_a, 6);
+	insert_end(&t_list_a, 16);
+	insert_end(&t_list_a, 91);
+
+	insert_end(&t_list_a, 2);
+	insert_end(&t_list_a, 24);
+	insert_end(&t_list_a, 19);
+	insert_end(&t_list_a, 17);
+	insert_end(&t_list_a, 12);
+
+	insert_end(&t_list_a, 8);
+	insert_end(&t_list_a, 71);
+	insert_end(&t_list_a, 9);
+	insert_end(&t_list_a, 3);
+	insert_end(&t_list_a, 11);
 
 	//Primeiro mid value 51
 	//Segundo mid value 76
@@ -645,40 +776,58 @@ int	main(void)
 	// sorted 3
 
 
-	while (count > 0)
-	{
-		insert_end(&t_list_a, count);
-		count--;
-	}
-
 	//------------------------------------------
 
 	printf("List A: ");
 	printList(t_list_a);
 	printf("\n");
+	printf("\n");
+
+	printf("Size a: %i\n", cnt_recursive(t_list_a));
 
 	//sort_3_elements(&t_list_a);
 
-	printf("\n");
-	printf("\n");
-	//sort_5_elements(&t_list_a, &t_list_b);
-	sort_biggest(&t_list_a, &t_list_b);
+	// printf("\n");
+	// printf("\n");
+	// //sort_5_elements(&t_list_a, &t_list_b);
+	// //sort_biggest(&t_list_a, &t_list_b);
+
+	// printf("\n");
+	// printf("List A: ");
+	// printList(t_list_a);
+
+	// printf("\n");
+	// printf("List B: ");
+	// printList(t_list_b);
 
 	printf("\n");
+	printf("\n");
+	printf("\n");
+
+	best_move(&t_list_a, &t_list_b, 0, 20, 20);
+
 	printf("List A: ");
 	printList(t_list_a);
 
 	printf("\n");
+	printf("Size a: %i\n", cnt_recursive(t_list_a));
+	printf("\n");
+	printf("\n");
 	printf("List B: ");
 	printList(t_list_b);
-
-
 	printf("\n");
+	printf("Size B: %i\n", cnt_recursive(t_list_b));
 	printf("\n");
 	printf("\n");
 	printf("Result should be: ");
+	printf("\n");
 	sortList(&t_list_a);
 	printList(t_list_a);
+	printf("\n");
+	printf("\n");
+
+	sortList(&t_list_b);
+	printList(t_list_b);
 
 	deallocate(&t_list_a, 0);
 	return (0);
