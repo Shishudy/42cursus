@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 18:18:34 by rasantos          #+#    #+#             */
-/*   Updated: 2023/02/27 21:28:31 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:39:45 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -797,9 +797,7 @@ int	send_top_b(t_node **a, t_node **b)
 	{
 		if ((*b)->x >= mid_point)
 			pa(a, b);
-		// else if (n++)
-		// 	rb(b);
-		else 											// TESTAR ELSE E ELSE IF, DAO RESULTADOS DIFERENTES
+		else
 		{
 			rb(b);
 			n++;
@@ -845,7 +843,7 @@ int	send_bot_b(t_node **a, t_node **b)
 		while (temp->next != NULL)
 			temp = temp->next;
 		rrb(b);
-		if ((*b)->x > mid_point)
+		if ((*b)->x < mid_point)
 		{
 			pa(a, b);
 			n++;
@@ -854,30 +852,96 @@ int	send_bot_b(t_node **a, t_node **b)
 	return (n);
 }
 
-// void rafa_sort_biggest(t_node **a, t_node **b)
-// {
-// 	t_node *temp;
-// 	int	i;
+void	back_ra(t_node **a, int n_control)
+{
 
-// 	while (cnt_recursive(*a) != 0)
-// 		best_move(a, b, start(a), end(a));
-// 	while (*b)
-// 	{
-// 		temp = *b;
-// 		while (temp->next != NULL)
-// 			temp = temp->next;
-// 		if ((*b)->x > temp->x)
-// 		{
-// 			tuafuncao(send_top_b(a, b));
-// 			tuafuncao(send_remains(a, b));
-// 		}
-// 		else if ((*b)->x < temp->x)
-// 		{
-// 			tuafuncao(send_bot_b(a, b));
-// 			tuafuncao(send_remains(a, b));
-// 		}
-// 	}
-// }
+	if (cnt_recursive(*a) <= 2 && list_sorted(a))
+		return ;
+	while (n_control-- != 0)
+		rra(a);
+}
+
+void	back_pb(t_node **a, t_node **b, int n_control)
+{
+	while (n_control-- != 0)
+		pa(a, b);
+}
+
+int	find_biggest_chunks_in_a(t_node **root, int n_moviments)
+{
+	t_node	*temp;
+	int		biggest;
+
+	temp = (*root);
+	biggest = temp->x;
+	while ( --n_moviments > 0)
+	{
+		if (biggest < temp->next->x)
+			biggest = temp->next->x;
+		temp = temp->next;
+	}
+	return (biggest);
+}
+
+int	find_smallest_chunks_in_a(t_node **root)
+{
+	t_node	*temp;
+	int		smallest;
+
+	temp = *root;
+	smallest = 0;
+	while (temp->next != NULL)
+	{
+		if (temp->x > temp->next->x)
+			smallest = temp->next->x;
+		temp = temp->next;
+	}
+	return (smallest);
+}
+
+void	sort_in_a_5(t_node **a, t_node **b, int n_moviments)
+{
+	t_node	*last;
+	int	tmp;
+	int	biggest;
+	int	smallest;
+	int	mid_pnt;
+	int	ra_control;
+	int	pb_control;
+
+	tmp = n_moviments;
+	ra_control = 0;
+	pb_control = 0;
+	last = (*a);
+	while (--tmp != 0)
+		last = last->next;
+	if (list_sorted(a))
+		return ;
+	biggest = find_biggest_chunks_in_a(a, n_moviments);
+	smallest = find_smallest_chunks_in_a(a);
+	mid_pnt = midpoint_chunk(a, smallest, biggest);
+	while (n_moviments >= 1)
+	{
+		if ((*a)->x > mid_pnt)
+		{
+			ra(a);
+			ra_control++;
+		}
+		else if ((*a)->x <= mid_pnt)
+		{
+			pb(b, a);
+			pb_control++;
+		}
+		n_moviments--;
+	}
+	back_ra(a, ra_control);
+	if (!(list_sorted(a)))
+		sort_in_a_5(a, b, ra_control);
+	back_pb(a, b, pb_control);
+	if (!(list_sorted(a)))
+		sort_in_a_5(a, b, pb_control);
+}
+
 
 int	send_remains(t_node **a, t_node **b, int n)
 {
@@ -951,39 +1015,43 @@ void	sort_biggest(t_node **a, t_node **b)
 	flag = send_bot_b(a, b) + 1;
 	flag = send_remains(a, b, flag);
 	printf("%i\n", flag);
+
+	flag = send_top_b(a, b);
+	flag = send_remains(a, b, flag);
+	printf("%i\n", flag);
+	flag = send_bot_b(a, b) + 1;
+	flag = send_remains(a, b, flag);
+	printf("%i\n", flag);
 	printf("Size a: %i\n", cnt_recursive(*a));
 }
 
-int	find_biggest_chunks_in_a(t_node **root, int n_moviments)
+void rafa_sort_biggest(t_node **a, t_node **b)
 {
-	t_node	*temp;
-	int		biggest;
+	t_node *temp;
+	int	i;
 
-	temp = (*root);
-	biggest = 0;
-	while (n_moviments-- != 0)
+	while (cnt_recursive(*a) != 0)
+		best_move(a, b, start(a), end(a));
+	while (cnt_recursive(*a) != 100)
 	{
-		if (temp->x < temp->next->x)
-			biggest = temp->next->x;
-		temp = temp->next;
+		temp = *b;
+		while (temp->next != NULL)
+			temp = temp->next;
+		if ((*b)->x > temp->x)
+		{
+			i = send_top_b(a, b);
+			sort_in_a_5(a, b, i);
+			sort_in_a_5(a, b, send_remains(a, b, i));
+		}
+		else if ((*b)->x < temp->x)
+		{
+			i = send_bot_b(a, b);
+			sort_in_a_5(a, b, i);
+			printf("%i\n", send_remains(a, b, i));
+			break ;
+			sort_in_a_5(a, b, send_remains(a, b, i));
+		}
 	}
-	return (biggest);
-}
-
-int	find_smallest_chunks_in_a(t_node **root)
-{
-	t_node	*temp;
-	int		smallest;
-
-	temp = *root;
-	smallest = 0;
-	while (temp->next != NULL)
-	{
-		if (temp->x > temp->next->x)
-			smallest = temp->next->x;
-		temp = temp->next;
-	}
-	return (smallest);
 }
 
 
@@ -1162,7 +1230,7 @@ int	main(void)
 
 	// printf("\n");
 
-	sort_biggest(&t_list_a, &t_list_b);
+	rafa_sort_biggest(&t_list_a, &t_list_b);
 
 	printf("\n");
 	printf("List B: ");
