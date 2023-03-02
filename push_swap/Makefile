@@ -12,10 +12,10 @@
 
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
-RM		= /bin/rm -f
+RM		= rm -f
 NAME	= push_swap
 INCLUDE	= push_swap.h
-SRCS	= srcs/push_swap.c srcs/checker.c srcs/ft_createlist.c srcs/sorter.c
+SRCS	= push_swap.c srcs/checker.c srcs/createlist.c
 #SRCS	= ${wildcard srcs/*.c}
 OBJS	= $(SRCS:.c=.o)
 
