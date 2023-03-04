@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:38:19 by rasantos          #+#    #+#             */
-/*   Updated: 2023/03/01 20:07:11 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:58:13 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 
 typedef struct s_list
 {
-	int				x;
+	void			*x;
 	struct s_list	*next;
 }					t_list;
 

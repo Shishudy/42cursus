@@ -17,23 +17,22 @@
 # include <unistd.h>
 # include "./libft/includes/libft.h"
 
-t_list 	*check_argv(char **argv, t_list *s_a);
+t_list 	*check_argv(char **argv, t_list *a);
 t_list	*ft_lstend(t_list *lst, int x);
 void	ft_addtolist(t_list **lst, int x);
-void	small_sort(t_list **s_a);
-/*int		check_sort(t_list **s_a, t_list **s_b);
-void	sort_to_b(t_list **s_a, t_list **s_b);
-void	sort_to_a(t_list **s_a, t_list **s_b);
-void	sa(t_list **s_a);
-void	sb(t_list **s_b);
-void	ss(t_list **s_a, t_list **s_b);
-void	pa(t_list **s_b, t_list **s_a);
-void	pb(t_list **s_a, t_list **s_b);
-void	ra(t_list **s_a);
-void	rb(t_list **s_b);
-void	rr(t_list **s_a, t_list **s_b);
-void	rra(t_list **s_a);
-void	rrb(t_list **s_b);
-void	rrr(t_list **s_a, t_list **s_b);*/
+void	sort_3(t_list **a);
+void	sort_5(t_list **a, t_list **b);
+void	sort_biggest(t_list **a, t_list **b);
+void	sa(t_list **a);
+void	sb(t_list **b);
+void	ss(t_list **a, t_list **b);
+void	pa(t_list **b, t_list **a);
+void	pb(t_list **a, t_list **b);
+void	ra(t_list **a);
+void	rb(t_list **b);
+void	rr(t_list **a, t_list **b);
+void	rra(t_list **a);
+void	rrb(t_list **b);
+void	rrr(t_list **a, t_list **b);
 
 #endif

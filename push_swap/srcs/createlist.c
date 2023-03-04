@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 18:51:26 by rasantos          #+#    #+#             */
-/*   Updated: 2023/03/01 20:03:14 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/03 13:57:37 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_list	*ft_lstend(t_list *a, int x)
 	if (!a)
 		return (0);
 	temp = a;
-	while (temp->next && temp->x != x)
+	while (temp->next && temp->x != (void *)(__INTPTR_TYPE__) x)
 		temp = temp->next;
-	if (temp->x == x)
+	if (temp->x == (void *)(__INTPTR_TYPE__) x)
 		exit (ft_printf("%s\n", "Duplicates"));
 	return (temp);
 }
@@ -34,7 +34,7 @@ void	ft_addtolist(t_list **a, int x)
 	new = (t_list *)malloc(sizeof(t_list));
 	if (new == NULL)
 		return ;
-	new->x = x;
+	new->x = (void *)(__INTPTR_TYPE__)x;
 	new->next = NULL;
 	if (!*a)
 	{
