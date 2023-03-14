@@ -6,56 +6,52 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 15:39:32 by rasantos          #+#    #+#             */
-/*   Updated: 2023/03/03 14:01:30 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/13 18:07:03 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-t_list	*splitstr(char *argv, char c, t_list *a)
+int	split_atoi(char **argv, t_list *a)
 {
-	int		i;
-	char	**args;
+	long int	value;
+	int			sign;
 
-	i = 0;
-	while (argv[i])
+	value = 0;
+	sign = 1;
+	while ((**argv == 32 || (**argv >= 9 && **argv <= 13)) && **argv)
+		(*argv)++;
+	if (**argv == '-')
 	{
-		if ((argv[i] < 48 || argv[i] > 57) && argv[i] != c)
-			exit (ft_printf("%s\n", "Non-numeric in splistr"));
-		i++;
+		sign = -1;
+		(*argv)++;
 	}
-	args = ft_split(argv, c);
-	i = 0;
-	while (args[i])
-		ft_addtolist(&a, ft_atoi(args[i++]));
-	return (a);
+	if ((**argv < '0' || **argv > '9') && **argv != '\0')
+		deallocate(&a, 1);
+	while (**argv >= '0' && **argv <= '9' && **argv != '\0')
+	{
+		value = value * 10 + **argv - '0';
+		(*argv)++;
+	}
+	if (**argv != 32 && (**argv <= 9 || **argv >= 13) && **argv)
+		deallocate(&a, 1);
+	value = value * sign;
+	if (value > 2147483647 || value < -2147483648 || (value == 0 && sign == -1))
+		deallocate(&a, 1);
+	return (value);
 }
 
-t_list *check_argv(char **argv, t_list *a)
+t_list	*check_argv(char **argv, t_list *a)
 {
 	int		i;
-	int		j;
-	int		n_split;
 
-	i = 0;
-	while (argv[++i])
+	i = 1;
+	while (argv[i])
 	{
-		j = 0;
-		n_split = 0;
-		while (argv[i][j])
-		{
-			if (argv[i][j] == 32 || (argv[i][j] >= 9 && argv[i][j] <= 13))
-			{
-				a = splitstr(argv[i], argv[i][j], a);
-				n_split = 1;
-				break ;
-			}
-			if ((argv[i][j] < 48 || argv[i][j] > 57))
-				exit (ft_printf("%s\n", "Non-numeric in check_argv"));
-			j++;
-		}
-		if (n_split == 0)
-			ft_addtolist(&a, ft_atoi(argv[i]));
+		ft_addtolist(&a, split_atoi(&argv[i], a));
+		i += !(*argv[i]);
 	}
+	if (list_sorted(&a))
+		deallocate(&a, 2);
 	return (a);
 }

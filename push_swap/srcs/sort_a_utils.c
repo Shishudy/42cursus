@@ -1,53 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   createlist.c                                       :+:      :+:    :+:   */
+/*   sort_a_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/15 18:51:26 by rasantos          #+#    #+#             */
-/*   Updated: 2023/03/13 18:01:58 by rasantos         ###   ########.fr       */
+/*   Created: 2023/03/13 18:09:05 by rasantos          #+#    #+#             */
+/*   Updated: 2023/03/13 18:09:06 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*ft_lstend(t_list *a, int x)
+int	sort_a_big(t_list **root, int n_moviments)
 {
 	t_list	*temp;
+	int		biggest;
 
-	if (!a)
-		return (0);
-	temp = a;
-	while (temp->next && temp->x != x)
+	temp = (*root);
+	biggest = temp->x;
+	while (--n_moviments > 0)
+	{
+		if (biggest < temp->next->x)
+			biggest = temp->next->x;
 		temp = temp->next;
-	if (temp->x == x)
-		deallocate(&a, 1);
-	return (temp);
+	}
+	return (biggest);
 }
 
-void	ft_addtolist(t_list **a, int x)
+int	sort_a_small(t_list **root)
 {
 	t_list	*temp;
-	t_list	*new;
+	int		smallest;
 
-	new = (t_list *)malloc(sizeof(t_list));
-	if (new == NULL)
-		return ;
-	new->x = x;
-	new->next = NULL;
-	if (!*a)
+	temp = *root;
+	smallest = 0;
+	while (temp->next != NULL)
 	{
-		*a = new;
-		return ;
-	}
-	temp = *a;
-	while (temp->next && temp->x != x)
+		if (temp->x > temp->next->x)
+			smallest = temp->next->x;
 		temp = temp->next;
-	if (temp->x == x)
-	{
-		free (new);
-		deallocate(a, 1);
 	}
-	temp->next = new;
+	return (smallest);
 }

@@ -6,39 +6,41 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 14:35:13 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/25 16:11:59 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:13:04 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void	sa(t_list **s_a)
+void	sa(t_list **a)
 {
-	t_list	*s_stack_a;
-	t_list	*temp;
+	t_list	*second;
 
-	s_stack_a = *s_a;
-	temp = ft_lstnew(s_stack_a->content);
-	s_stack_a->content = s_stack_a->next->content;
-	s_stack_a->next->content = temp->content;
+	if (!*a || cnt_rec(*a) <= 1)
+		return ;
+	second = (*a)->next;
+	(*a)->next = second->next;
+	second->next = *a;
+	*a = second;
 	ft_printf("%s\n", "sa");
 }
 
-void	sb(t_list **s_b)
+void	sb(t_list **b)
 {
-	t_list	*s_stack_b;
-	t_list	*temp;
+	t_list	*second;
 
-	s_stack_b = *s_b;
-	temp = ft_lstnew(s_stack_b->content);
-	s_stack_b->content = s_stack_b->next->content;
-	s_stack_b->next->content = temp->content;
+	if (!*b || cnt_rec(*b) <= 1)
+		return ;
+	second = (*b)->next;
+	(*b)->next = second->next;
+	second->next = *b;
+	*b = second;
 	ft_printf("%s\n", "sb");
 }
 
-void	ss(t_list **s_a, t_list **s_b)
+void	ss(t_list **a, t_list **b)
 {
-	sa(s_a);
-	sb(s_b);
+	sa(a);
+	sb(b);
 	ft_printf("%s\n", "ss");
 }

@@ -6,33 +6,49 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 19:19:50 by rasantos          #+#    #+#             */
-/*   Updated: 2023/01/25 16:05:53 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:13:27 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void	ra(t_list **s_a)
+void	ra(t_list **a)
 {
-	t_list	*s_stack_a;
+	t_list	*curr;
+	t_list	*temp;
 
-	s_stack_a = *s_a;
-	ft_lstadd_back(&s_stack_a, s_stack_a->content);
+	if (!*a || cnt_rec(*a) <= 1)
+		return ;
+	curr = *a;
+	temp = *a;
+	*a = curr->next;
+	while (curr->next != NULL)
+		curr = curr->next;
+	curr->next = temp;
+	temp->next = NULL;
 	ft_printf("%s\n", "ra");
 }
 
-void	rb(t_list **s_b)
+void	rb(t_list **b)
 {
-	t_list	*s_stack_b;
+	t_list	*curr;
+	t_list	*temp;
 
-	s_stack_b = *s_b;
-	ft_lstadd_back(&s_stack_b, s_stack_b->content);
+	if (!*b || cnt_rec(*b) <= 1)
+		return ;
+	curr = *b;
+	temp = *b;
+	*b = curr->next;
+	while (curr->next != NULL)
+		curr = curr->next;
+	curr->next = temp;
+	temp->next = NULL;
 	ft_printf("%s\n", "rb");
 }
 
-void	rr(t_list **s_a, t_list **s_b)
+void	rr(t_list **a, t_list **b)
 {
-	ra(s_a);
-	ra(s_b);
+	ra(a);
+	rb(b);
 	ft_printf("%s\n", "rr");
 }

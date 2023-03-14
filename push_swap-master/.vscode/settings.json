@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"stdlib.h": "c",
-		"limits": "c",
-		"*.tcc": "c",
-		"type_traits": "c"
-	},
-	"C_Cpp.errorSquiggles": "disabled"
-}
