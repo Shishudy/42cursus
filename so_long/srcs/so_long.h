@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:29:16 by rasantos          #+#    #+#             */
-/*   Updated: 2023/06/18 15:16:14 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:29:37 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct s_map
 	int				bad_guys;
 	int				exit;
 	int				keys;
-	int				torches;
 	t_player		player;
 	t_enemy			enemy;
 }					t_map;
@@ -105,7 +104,6 @@ typedef struct s_game
 	t_img			floor;
 	t_img			exit[2];
 	t_img			keys;
-	t_img			torch[3];
 }               	t_game;
 
 int		check_walls(t_game *game, double x, double y);

@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/06 20:38:35 by rasantos          #+#    #+#             */
-/*   Updated: 2023/06/06 20:38:55 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:00:09 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int	check_walls(t_game *game, double x, double y)
 int	check_enemy2(t_game *game, double x, double y)
 {
 	if ((int)x == (int)game->map.enemy.x && 
-	(int)y == (int)game->map.enemy.y)
+		(int)y == (int)game->map.enemy.y)
 		return (0);
 	if ((int)x == (int)game->map.enemy.x && 
-	(int)y == (int)game->map.enemy.y)
+		(int)y == (int)game->map.enemy.y)
 		return (0);
 	return (1);
 }

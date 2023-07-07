@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:43:12 by rasantos          #+#    #+#             */
-/*   Updated: 2023/06/18 15:19:12 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/07 18:29:22 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ void    wall_check(t_map map)
     i = 0;
     while (i != map.cols)
     {
-        if (map.map[0][i] != '1' && map.map[0][i] != 'T')
+        if (map.map[0][i] != '1')
             exit(ft_printf("%s\n", "Map not closed TOP"));
-        if (map.map[map.rows - 1][i] != '1' && map.map[map.rows - 1][i] != 'T')
+        if (map.map[map.rows - 1][i] != '1')
             exit(ft_printf("%s\n", "Map not closed BOT"));
         i++;
     }
     i = 0;
     while (i != map.rows - 1)
     {
-        if (map.map[i][0] != '1' && map.map[i][0] != 'T')
+        if (map.map[i][0] != '1')
             exit(ft_printf("%s\n", "Map not closed LEFT"));
-        if (map.map[i][map.cols - 1] != '1' && map.map[i][map.cols - 1] != 'T')
+        if (map.map[i][map.cols - 1] != '1')
             exit(ft_printf("%s\n", "Map not closed RIGHT"));
         i++;
     }
@@ -63,8 +63,6 @@ void    dup_check(t_map *map)
                 map->enemy.x = j;
                 map->enemy.y = i;
             }
-            if (map->map[i][j] == 'T')
-                map->torches++;
             j++;
         }
         i++;
@@ -86,10 +84,10 @@ void    free_map(t_map clone)
     free(clone.map);
 }
 
-void    path_check(t_map map)
+void	path_check(t_map map)
 {
-    static t_map   clone;
-    int     poi;
+	static t_map	clone;
+	int				poi;
 
     clone.map = map_clone(map.map);
     poi = 0;
@@ -123,7 +121,7 @@ t_map   map_check(t_map map)
         while (map.map[i][j] != '\0')
         {
             c = map.map[i][j];
-            if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P' && c != 'B' && c != 'T' && c != '\n')
+            if (c != '0' && c != '1' && c != 'C' && c != 'E' && c != 'P' && c != 'B' && c != '\n')
                 exit(ft_printf("%s\n", "Unknown character in map"));
             j++;
         }
