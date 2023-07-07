@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   init_game_struct.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 19:28:32 by rasantos          #+#    #+#             */
-/*   Updated: 2023/06/04 21:08:59 by rasantos         ###   ########.fr       */
+/*   Created: 2023/03/27 19:35:07 by rasantos          #+#    #+#             */
+/*   Updated: 2023/06/18 15:19:24 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int main(int argc, char **argv)
-{
-    static t_game  game;
-
-    if (argc != 2)
-        return (0);
-    game.map = map_creation(argv[1]);
-    init_game_struct(&game);
-    game.map = map_check(game.map);
-    window_creation(&game);
-    return (0);
+void    init_game_struct(t_game *game)
+{   
+    game->map.keys = 0;
+    game->map.exit = 0;
+    game->map.torches = 0;
+    game->map.player.player = 0;
+    game->map.bad_guys = 0;
+    game->map.player.run = 0;
 }

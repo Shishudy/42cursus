@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:29:36 by rasantos          #+#    #+#             */
-/*   Updated: 2023/03/15 16:30:30 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:19:34 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ char	*get_next_line(int fd);
 char	*ft_remainder(int fd, char *remainder);
 char	*ft_new_line(char *remainder);
 char	*ft_new_remainder(char *remainder);
-size_t	ft_strlen( char *s);
-char	*ft_strchr( char *s, int c);
+size_t	ft_strlen(char *s);
+char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *remainder, char *buf);
 
 #endif

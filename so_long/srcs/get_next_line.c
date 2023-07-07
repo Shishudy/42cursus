@@ -6,11 +6,13 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 16:29:46 by rasantos          #+#    #+#             */
-/*   Updated: 2023/03/15 19:44:05 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/03/21 18:23:10 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "so_long.h"
+#include <stdio.h>
 #include <unistd.h>
 
 char	*ft_remainder(int fd, char *remainder)
@@ -102,3 +104,31 @@ char	*get_next_line(int fd)
 	remainder[fd] = ft_new_remainder(remainder[fd]);
 	return (new_line);
 }
+
+// int	main(int argc, char **argv)
+// {
+// 	char    *line;
+//     char    **map;
+//     int     fd;
+// 	int		i;
+
+//     fd = open(argv[1], O_RDONLY);
+//     if (fd == -1)
+//         exit(printf("%s\n", "Couldn't open file"));
+//     map = malloc(sizeof(map) * (8 + 2));
+// 	if (map == NULL)
+// 		return (0);
+//     i = 0;
+//     while (1)
+//     {
+//         line = get_next_line(fd);
+// 		printf("%s\n", line);
+//         if (line == NULL)
+//             break ;
+//         map[i++] = line;
+//         free(line);
+//         line = NULL;
+//     }
+// 	map[i] = 0;
+// 	return (i);
+// }

@@ -6,12 +6,12 @@
 #    By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/15 14:47:55 by rasantos          #+#    #+#              #
-#    Updated: 2023/03/15 16:31:23 by rasantos         ###   ########.fr        #
+#    Updated: 2023/05/23 17:46:13 by rasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CC		= gcc
-CFLAGS	= #-Wall -Wextra -Werror
+CC		= cc
+CFLAGS	= -Wall -Wextra -Werror -g
 MLX_FLAGS	= -L ./minilibx-linux/ -lmlx -lXext -lX11
 RM		= rm -f
 NAME	= so_long
@@ -23,10 +23,10 @@ all: $(NAME)
 $(NAME) : $(OBJS)
 	@make -C ft_printf --no-print-directory
 	@make -C minilibx-linux --no-print-directory
-	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME) $(INCLUDE) $(MLX_FLAGS)
+	@$(CC) $(CFLAGS) $(SRCS) $(INCLUDE) $(MLX_FLAGS)
 
 clean: 
-	@$(RM) $(OBJS)
+	@$(RM) $(OBJS) ${wildcard srcs/*.h.gch}
 	@make clean -C minilibx-linux --no-print-directory
 	@make clean -C ft_printf --no-print-directory
 fclean: clean
