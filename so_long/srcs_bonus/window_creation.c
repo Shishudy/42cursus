@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 18:22:45 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/26 16:07:07 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:07:11 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ int	render(t_game *game)
 			game->map.player.idle = 0;
 	}
 	if (i == 15000)
+	{
+		if (game->map.bad_guys > 0)
+			enemy_control(game, n++);
 		i = 0;
+	}
 	if (n == 6)
 		n = 0;
 	return (0);

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rasantos <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/16 10:33:36 by rasantos          #+#    #+#              #
-#    Updated: 2022/03/16 10:33:38 by rasantos         ###   ########.fr        #
+#    Updated: 2023/07/26 16:23:57 by rasantos         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,18 +28,18 @@ OBJS        = $(SRC_FILES:.c=.o)
 #Rules
 
 %.o:        %.c
-			$(CC) $(CFLAGS) -c $< -o $@
+			@$(CC) $(CFLAGS) -c $< -o $@
 
 all:        $(NAME)
 
 $(NAME):    $(OBJS)
-			ar -rcs $(NAME) $(OBJS)
+			@ar -rcs $(NAME) $(OBJS)
 
 clean:
-			$(RM) $(OBJS)
+			@$(RM) $(OBJS)
 
 fclean:     clean
-			$(RM) $(NAME)
+			@$(RM) $(NAME)
 
 re:     fclean all
 

@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 21:05:43 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/07 18:04:39 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/25 19:11:03 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,49 @@ void	clear_enemy_image(t_game *game, int x, int y)
 		put_image(game, game->keys, x, y);
 }
 
-int	check_enemy(t_game *game, double x, double y)
+int	enemy_walls(t_game *game, int i)
 {
-	if (game->map.map[(int)y][(int)x] == '1')
-		return (0);
-	return (1);
+	if (i == 1)
+	{
+		if (check_walls(game, game->map.enemy.x, game->map.enemy.y - 0.15f) && \
+		check_walls(game, game->map.enemy.x + 0.74f, game->map.enemy.y - 0.15f))
+			return (1);
+	}
+	else if (i == 2)
+	{
+		if (check_walls(game, game->map.enemy.x, game->map.enemy.y + 0.74f) && \
+		check_walls(game, game->map.enemy.x + 0.74f, game->map.enemy.y + 0.74f))
+			return (1);
+	}
+	else if (i == 3)
+	{
+		if (check_walls(game, game->map.enemy.x - 0.15f, game->map.enemy.y) && \
+		check_walls(game, game->map.enemy.x - 0.15f, game->map.enemy.y + 0.74f))
+			return (1);
+	}
+	else if (i == 4)
+	{
+		if (check_walls(game, game->map.enemy.x + 0.15f, game->map.enemy.y) && \
+		check_walls(game, game->map.enemy.x + 0.15f, game->map.enemy.y + 0.74f))
+			return (1);
+	}
+	return (0);
 }
 
 void	enemy_control(t_game *game, int n)
 {
 	clear_enemy_image(game, game->map.enemy.x, game->map.enemy.y);
 	clear_enemy_image(game, game->map.enemy.x, game->map.enemy.y + 0.74f);
-	clear_enemy_image(game, game->map.enemy.x + 0.51f, game->map.enemy.y);
+	clear_enemy_image(game, game->map.enemy.x + 0.74f, game->map.enemy.y);
 	clear_enemy_image(game, game->map.enemy.x + 0.51f, \
 	game->map.enemy.y + 0.74f);
-	if ((game->map.player.y < game->map.enemy.y) && check_enemy(game, \
-	game->map.enemy.x, game->map.enemy.y - 0.15f))
+	if ((game->map.player.y < game->map.enemy.y) && enemy_walls(game, 1))
 		game->map.enemy.y = game->map.enemy.y - 0.15f;
-	else if ((game->map.player.y > game->map.enemy.y) && check_enemy(game, \
-	game->map.enemy.x, game->map.enemy.y + 0.15f))
+	else if ((game->map.player.y > game->map.enemy.y) && enemy_walls(game, 2))
 		game->map.enemy.y = game->map.enemy.y + 0.15f;
-	if ((game->map.player.x < game->map.enemy.x) && check_enemy(game, \
-	game->map.enemy.x - 0.15f, game->map.enemy.y))
+	if ((game->map.player.x < game->map.enemy.x) && enemy_walls(game, 3))
 		game->map.enemy.x = game->map.enemy.x - 0.15f;
-	else if ((game->map.player.x > game->map.enemy.x) && check_enemy(game, \
-	game->map.enemy.x + 0.15f, game->map.enemy.y))
+	else if ((game->map.player.x > game->map.enemy.x) && enemy_walls(game, 4))
 		game->map.enemy.x = game->map.enemy.x + 0.15f;
 	put_image(game, game->map.enemy.r[n], game->map.enemy.x, game->map.enemy.y);
 	if (((game->map.enemy.y >= game->map.player.y) && (game->map.enemy.y <= \

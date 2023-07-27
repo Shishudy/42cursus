@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:29:16 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/26 16:35:16 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/26 16:35:59 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,15 +65,25 @@ typedef struct s_player
 	t_img			r_r[6];
 }					t_player;
 
+typedef struct s_enemy
+{
+	double			x;
+	double			y;
+	int				i;
+	t_img			r[6];
+}					t_enemy;
+
 typedef struct s_map
 {
 	char			**map;
 	int				cols;
 	int				rows;
+	int				bad_guys;
 	int				exit;
 	int				keys;
 	int				poi;
 	t_player		player;
+	t_enemy			enemy;
 }					t_map;
 
 typedef struct s_canvas
@@ -95,6 +105,7 @@ typedef struct s_game
 	t_img			keys;
 }					t_game;
 
+char	*ft_itoa(int n);
 void	load_xpm(t_game *game, char *filename, t_img *mem);
 void	put_steps_to_window(t_game *game);
 char	*ft_strdup(const char *s1);
@@ -103,9 +114,12 @@ void	chars_counter(char c, int i, int j, t_game *game);
 int		free_mem(t_game *game);
 void	error_messages(char *error, t_game *game);
 int		check_walls(t_game *game, double x, double y);
+int		check_enemy(t_game *game, double x, double y);
 int		check_collectible(t_game *game, double x, double y);
 int		check_exit(t_game *game, double x, double y);
 int		close_game(int i, t_game *game);
+void	init_enemy(t_game *game);
+void	enemy_control(t_game *game, int n);
 void	put_moving_images(t_game *game, t_img img, char c);
 void	load_xpm(t_game *game, char *filename, t_img *mem);
 void	put_image(t_game *game, t_img img, double x, double y);

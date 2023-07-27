@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game_struct.c                                 :+:      :+:    :+:   */
+/*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/27 19:35:07 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/07 17:44:17 by rasantos         ###   ########.fr       */
+/*   Created: 2023/07/25 14:54:38 by rasantos          #+#    #+#             */
+/*   Updated: 2023/07/25 19:55:57 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_game_struct(t_game *game)
+void	error_messages(char *error, t_game *game)
 {
-	game->map.keys = 0;
-	game->map.exit = 0;
-	game->map.player.player = 0;
-	game->map.bad_guys = 0;
-	game->map.player.run = 0;
+	int	i;
+
+	ft_printf("Error\n%s\n", error);
+	i = 0;
+	while (i < game->map.rows)
+		free(game->map.map[i++]);
+	free(game->map.map);
+	exit(0);
 }

@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error_messages.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/29 19:28:32 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/25 16:29:55 by rasantos         ###   ########.fr       */
+/*   Created: 2023/07/25 14:54:38 by rasantos          #+#    #+#             */
+/*   Updated: 2023/07/25 19:55:57 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	main(int argc, char **argv)
+void	error_messages(char *error, t_game *game)
 {
-	static t_game	game;
+	int	i;
 
-	if (argc != 2)
-		return (0);
-	game.map = map_creation(argv[1]);
-	init_game_struct(&game);
-	map_check(&game);
-	window_creation(&game);
-	return (0);
+	ft_printf("Error\n%s\n", error);
+	i = 0;
+	while (i < game->map.rows)
+		free(game->map.map[i++]);
+	free(game->map.map);
+	exit(0);
 }

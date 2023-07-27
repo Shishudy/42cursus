@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 16:50:29 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/26 16:03:42 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:27:04 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	clear_player_image(t_game *game, int x, int y)
 	if (game->map.map[y][x] != 'E' && game->map.map[y][x] != '1' \
 	&& game->map.map[y][x] != 'C')
 	{
+		if (x == (int) game->map.enemy.x && y == (int)game->map.enemy.y)
+			return ;
 		mlx_put_image_to_window(game->mlx_ptr, game->win_ptr, \
 		game->floor.img_ptr, x * 32, y * 32);
 	}

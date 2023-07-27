@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 16:01:45 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/26 16:01:56 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/26 15:53:43 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	path_checker(t_map clone, int x, int y, char c)
 		clone.poi++;
 	if (clone.map[y][x] == '1')
 		return (clone.poi);
+	if (clone.map[y][x] == 'B')
+		return (clone.poi);
 	clone.map[y][x] = '1';
 	clone.poi = path_checker(clone, x - 1, y, c);
 	clone.poi = path_checker(clone, x + 1, y, c);
@@ -72,7 +74,7 @@ int	path_checker(t_map clone, int x, int y, char c)
 void	chars_checker(char c, t_game *game)
 {
 	if (c != '0' && c != '1' && c != 'C' && c != 'E' && \
-	c != 'P' && c != '\n')
+	c != 'P' && c != 'B' && c != '\n')
 		error_messages("Unknown character in map", game);
 }
 
@@ -88,4 +90,10 @@ void	chars_counter(char c, int i, int j, t_game *game)
 	}
 	else if (c == 'E')
 		game->map.exit++;
+	else if (c == 'B')
+	{
+		game->map.bad_guys++;
+		game->map.enemy.x = j;
+		game->map.enemy.y = i;
+	}
 }

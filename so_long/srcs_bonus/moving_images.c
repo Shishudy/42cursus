@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:24:28 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/26 16:03:41 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/07 17:48:41 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,9 @@ void	init_sprites(t_game *game)
 	init_player_run(game);
 	put_moving_images(game, game->exit[0], 'E');
 	put_moving_images(game, game->map.player.i_r[0], 'P');
+	if (game->map.bad_guys > 0)
+	{
+		init_enemy(game);
+		put_moving_images(game, game->map.enemy.r[0], 'B');
+	}
 }

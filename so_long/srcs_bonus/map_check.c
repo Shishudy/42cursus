@@ -6,7 +6,7 @@
 /*   By: rasantos <rasantos@student.42lisboa.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/15 15:43:12 by rasantos          #+#    #+#             */
-/*   Updated: 2023/07/26 16:03:42 by rasantos         ###   ########.fr       */
+/*   Updated: 2023/07/25 20:44:05 by rasantos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	dup_check(t_game *game)
 	if (game->map.player.player != 1 || game->map.exit != 1 || \
 	game->map.keys < 1)
 		error_messages("Invalid number of characters", game);
+	if (game->map.bad_guys > 1)
+		error_messages("Too many enemies for this difficulty!", game);
 }
 
 void	free_map(t_map clone)
