@@ -30,15 +30,15 @@ int	split_atoi(char **argv, t_list *a)
 		deallocate(&a, 1);
 	while (**argv >= '0' && **argv <= '9' && **argv != '\0')
 	{
+		if (value * 10 < value)
+			deallocate(&a, 1);
 		value = value * 10 + **argv - '0';
 		(*argv)++;
 	}
-	if (**argv != 32 && (**argv <= 9 || **argv >= 13) && **argv)
+	if (value * sign > 2147483647 || value * sign < -2147483648 || \
+		(**argv != 32 && (**argv <= 9 || **argv >= 13) && **argv))
 		deallocate(&a, 1);
-	value = value * sign;
-	if (value > 2147483647 || value < -2147483648 || (value == 0 && sign == -1))
-		deallocate(&a, 1);
-	return (value);
+	return (value * sign);
 }
 
 t_list	*check_argv(char **argv, t_list *a)
