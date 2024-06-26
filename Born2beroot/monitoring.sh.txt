@@ -16,7 +16,8 @@ ulog=$(users | wc -w) #user log
 nip=$(hostname -I) #network ip
 mac=$(ip link show | grep ether | awk '{print $2}') #mac address
 scmd=$(journalctl _COMM=sudo | grep COMMAND | wc -l) #sudo commands
-wall "  #Architecture: $arch
+wall " 
+        #Architecture: $arch
         #CPU physical: $pcpu
         #vCPU: $vcpu
         #Memory Usage: $uram/${sram}MB ($pram)
